@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* :root {
+    --color-base: theme('colors.gray.400'); 
+    --color-text-base: theme('colors.black'); 
+    --color-off-base: theme('colors.gray.50'); 
+    --color-text-muted: theme('colors.gray.600');
+    --color-text-muted-hover: theme('colors.gray.500'); 
+    --color-primary: theme('colors.orange.400'); 
+    --color-secondary:theme('colors.orange.200');
+  } */
+
+  .theme-light {
+    --color-base: theme('colors.white'); 
+    --color-text-base: theme('colors.black'); 
+    --color-off-base: theme('colors.gray.50');
+    --color-text-muted: theme('colors.gray.600');
+    --color-text-muted-hover: theme('colors.gray.500'); 
+    --color-primary: #f4ba1d; 
+    --color-secondary:theme('colors.orange.300'); 
+  }
+
+  .theme-dark {
+    --color-base: #1a1a1a;
+    --color-text-base: theme('colors.gray.100'); 
+    --color-off-base: theme('colors.gray.800'); 
+    --color-text-muted:theme('colors.gray.300'); 
+    --color-text-muted-hover: theme('colors.gray.200');
+    --color-primary: #f4ba1d; 
+    --color-secondary: theme('colors.orange.200'); 
+  }
+
+  .custom-svg {
+    fill: var(--color-text-base);
+  }
+
+  .active {
+    color: var(--color-primary);
+  }
+
+}
