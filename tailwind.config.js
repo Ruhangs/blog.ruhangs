@@ -10,22 +10,26 @@ module.exports = {
     extend: {
       backgroundColor: {
         //utilities like `bg-base` and `bg-primary`
-        base: 'var(--color-base)',
+        baseColor: 'var(--color-base)',
+        secondary: 'var(--color-secondary)',
         'off-base': 'var(--color-off-base)',
         primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
         muted: 'var(--color-text-muted)',
+        tag: 'var(--color-tag)'
       },
       textColor: {
         //like `text-base` and `text-primary`
         baseColor: 'var(--color-text-base)',
+        secondary: 'var(--color-text-secondary)',
+        thirdary: 'var(--color-text-thirdary)',
         muted: 'var(--color-text-muted)',
         'muted-hover': 'var(--color-text-muted-hover)',
         primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
       },
       borderColor:{
-        primary: 'var(--color-primary)'
+        primary: 'var(--color-primary)',
+        light: 'var(--color-text-base)',
+        dark: 'var(--color-secondary)'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

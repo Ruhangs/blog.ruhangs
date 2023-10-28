@@ -3,42 +3,55 @@
 @tailwind utilities;
 
 @layer base {
-  /* :root {
-    --color-base: theme('colors.gray.400'); 
-    --color-text-base: theme('colors.black'); 
-    --color-off-base: theme('colors.gray.50'); 
-    --color-text-muted: theme('colors.gray.600');
-    --color-text-muted-hover: theme('colors.gray.500'); 
-    --color-primary: theme('colors.orange.400'); 
-    --color-secondary:theme('colors.orange.200');
-  } */
-
   .theme-light {
-    --color-base: theme('colors.white'); 
-    --color-text-base: theme('colors.black'); 
+    --color-base: #fafafa;
+    --color-secondary: #eee; 
+    --color-text-base: #000; 
+    --color-text-secondary: #222; 
+    --color-text-thirdary: #444;
     --color-off-base: theme('colors.gray.50');
     --color-text-muted: theme('colors.gray.600');
     --color-text-muted-hover: theme('colors.gray.500'); 
     --color-primary: #f4ba1d; 
-    --color-secondary:theme('colors.orange.300'); 
+    --color-tag: #eee
   }
 
   .theme-dark {
-    --color-base: #1a1a1a;
-    --color-text-base: theme('colors.gray.100'); 
+    --color-base: #222;
+    --color-secondary: #000;
+    --color-text-base: #ddd; 
+    --color-text-secondary: #ddd; 
+    --color-text-thirdary: #aaa;
     --color-off-base: theme('colors.gray.800'); 
     --color-text-muted:theme('colors.gray.300'); 
     --color-text-muted-hover: theme('colors.gray.200');
     --color-primary: #f4ba1d; 
-    --color-secondary: theme('colors.orange.200'); 
+    --color-tag: #eee
   }
 
   .custom-svg {
     fill: var(--color-text-base);
+    cursor: pointer;
+  }
+  
+  .custom-svg:hover {
+    fill: var(--color-primary);
+    cursor: pointer;
   }
 
   .active {
     color: var(--color-primary);
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  .bgimg {
+    background-image: radial-gradient(farthest-side at -80% 10%,var(--color-primary),#d3c525,var(--color-secondary));
+    background-attachment: fixed;
   }
 
 }

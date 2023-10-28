@@ -1,16 +1,14 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter, usePathname } from 'next/navigation';
-import { Back, Home, Git, Light, Dark } from '@/assets/svg'
+import { usePathname } from 'next/navigation';
+import { Back, Home, Git, Light, Dark, Login } from '@/assets/svg'
 
 export default function Nav() {
 
   const headerRef = useRef<HTMLInputElement>(null)
   const miniMenuRef = useRef<HTMLInputElement>(null)
   const menuListRef = useRef<HTMLInputElement>(null)
-  const router = useRouter()
   const pathName = usePathname()
 
   // const themes = ["light", "dark"];
@@ -21,9 +19,10 @@ export default function Nav() {
     let radio = document.querySelector('#myRadio')
     if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setTheme("dark")
-      document.documentElement.classList.add('theme-dark')
+      document.documentElement.className = 'theme-dark'
     } else {
-      document.documentElement.classList.remove('theme-dark')
+      setTheme("light")
+      document.documentElement.className = "theme-light"
     }
 
   }, [theme])
@@ -40,16 +39,18 @@ export default function Nav() {
     }
   }
 
+  
+
   return (
-    <>
-      <div className="position: fixed z-[2] flex items-center top-0 bg-base w-full h-[70px] shadow-lg" ref={headerRef}>
+    <div className={pathName === '/login' || pathName === '/register' ? "hidden" : ""}>
+      <div className="fixed z-[10] bg-baseColor w-full h-[70px] shadow-lg" ref={headerRef}>
         <div className="ml-[60px]" onClick={() => history.back()}>
           <Back className="hidden" />
         </div>
         <div className="w-9/12 mx-auto flex justify-between items-center">
           <div>
             <Link href={"/"}>
-              <Home width="140" height="40" className="custom-svg" />
+              <Home width="170" height="50" className="custom-svg" />
             </Link>
           </div>
 
@@ -63,15 +64,15 @@ export default function Nav() {
 
             {/* <!-- 列表 --> */}
             <div className="flex justify-between  items-center h-[70px]" ref={menuListRef}>
-              <div className='w-[200px] h-[30px] mr-[40px] border rounded-xl leading-[30px] '>
+              {/* <div className='w-[200px] h-[30px] mr-[40px] border rounded-xl leading-[30px] '>
                 <span className='text-baseColor text-sm ml-[10px]'>请输入。。。。</span>
-              </div>
+              </div> */}
               {/* <!-- 栏目 --> */}
-              <ul className="flex justify-between items-center text-[18px] text-baseColor font-medium w-[300px]  font-serif mr-[40px]" id='nav' >
-                <li className={pathName === '/' ? "active" : ""}><Link href={"/"}>首页</Link></li>
-                <li className={pathName === '/Blog' ? "active" : ""}><Link href={"/Blog"}>博客</Link></li>
-                <li className={pathName === '/Note/1' ? "active" : ""}><Link href={"/Note/1"}>笔记</Link></li>
-                <li className={pathName === '/Project' ? "active" : ""}><Link href={"/Project"}>项目</Link></li>
+              <ul className="flex justify-between items-center text-[18px] font-normal text-baseColor w-[300px] mr-[40px]" id='nav' >
+                <li className={pathName === '/' ? "active" : ""}><Link href={"/"}>首 页</Link></li>
+                <li className={pathName === '/Blog' || new RegExp("\/Blog\/.+").test(pathName) ? "active" : ""}><Link href={"/Blog"}>博 客</Link></li>
+                <li className={pathName === '/Note' || new RegExp("\/Note\/.+").test(pathName) ? "active" : ""}><Link href={"/Note"}>笔 记</Link></li>
+                <li className={pathName === '/Project' || new RegExp("\/Project\/.+").test(pathName) ? "active" : ""}><Link href={"/Project"}>项 目</Link></li>
               </ul>
               {/* <!-- 开关灯 --> */}
               <div className="h-[20px] w-[20px] flex justify-center align-middle cursor-pointer" id="myRadio" >
@@ -82,13 +83,16 @@ export default function Nav() {
               </div>
               <div className='ml-[30px]'>
                 <a href='https://github.com/Ruhangs/RHS-Bolg'>
-                  <Git width="19" height="19" className="custom-svg" />
+                  <Git width="20" height="20" className="custom-svg" />
                 </a>
+              </div>
+              <div className='ml-[30px]'>
+                <Link href={"/login"}><Login className="custom-svg" width="20" height="20" /></Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

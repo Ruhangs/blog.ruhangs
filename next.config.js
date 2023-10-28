@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
-// import "@svgr/webpack"
+const { withContentlayer } = require('next-contentlayer');
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {
     config.module.rules.push({
@@ -12,4 +12,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+module.exports = withContentlayer(nextConfig)
