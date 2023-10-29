@@ -27,8 +27,10 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
     EmailProvider({
-      from: env.SMTP_FROM,
+      server: env.EMAIL_SERVER,
+      from: env.EMAIL_FROM,
       sendVerificationRequest: async ({ identifier, url, provider }) => {
+        
         const user = await db.user.findUnique({
           where: {
             email: identifier,
@@ -72,10 +74,12 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ token, session }) {
       if (token) {
-        session.user.id = token.id
-        session.user.name = token.name
-        session.user.email = token.email
-        session.user.image = token.picture
+        if (session?.user) {
+          session.user.id = token.id
+          session.user.name = token.name
+          session.user.email = token.email
+          session.user.image = token.picture
+        }
       }
 
       return session

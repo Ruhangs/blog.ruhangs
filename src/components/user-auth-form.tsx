@@ -1,5 +1,4 @@
 "use client"
-
 import * as React from "react"
 import { useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -39,20 +38,21 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       redirect: false,
       callbackUrl: searchParams?.get("from") || "/dashboard",
     })
+    console.log(signInResult);
 
     setIsLoading(false)
 
     if (!signInResult?.ok) {
       return toast({
-        title: "Something went wrong.",
-        description: "Your sign in request failed. Please try again.",
+        title: "发生了未知错误！",
+        description: "你的登录请求失败。 请再试一次。",
         variant: "destructive",
       })
     }
 
     return toast({
-      title: "Check your email",
-      description: "We sent you a login link. Be sure to check your spam too.",
+      title: "请检查你的邮箱！",
+      description: "我们发送了一个登录链接。若没收到，请检查你的垃圾邮件。",
     })
   }
 

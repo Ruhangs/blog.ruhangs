@@ -53,15 +53,7 @@ export default function Nav() {
               <Home width="170" height="50" className="custom-svg" />
             </Link>
           </div>
-
-
-          {/* <!-- 右边操作栏 --> */}
           <div >
-            {/* <!-- 按钮 -->
-            <div className="min-w-[40px]" ref={miniMenuRef} id="minmenu" onClick={openList}>
-              <span className="hidden h-0 w-[40px] rounded-sm relative"></span>
-            </div> */}
-
             {/* <!-- 列表 --> */}
             <div className="flex justify-between  items-center h-[70px]" ref={menuListRef}>
               {/* <div className='w-[200px] h-[30px] mr-[40px] border rounded-xl leading-[30px] '>
