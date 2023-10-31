@@ -1,6 +1,5 @@
 "use client"
 import React, { useRef } from 'react'
-import { handelrImgUrl } from '@/utils/useHandlerURL'
 import { QQ, Wechat, Mail, Github } from '@/assets/svg'
 import Image from 'next/image'
 
