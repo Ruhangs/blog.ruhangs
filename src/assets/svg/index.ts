@@ -12,5 +12,6 @@ import Time from "@/assets/svg/time.svg"
 import BackToAll from "@/assets/svg/backToAll.svg"
 import Rocket from "@/assets/svg/rocket.svg"
 import Login from "@/assets/svg/login.svg"
+import System from "@/assets/svg/system.svg"
 
-export { Home, Git, Light, Dark, Back, Github, Mail, QQ, Wechat, DianZhan, Time, BackToAll, Rocket, Login }
+export { Home, Git, Light, Dark, Back, Github, Mail, QQ, Wechat, DianZhan, Time, BackToAll, Rocket, Login, System }

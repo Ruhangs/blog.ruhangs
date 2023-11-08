@@ -31,6 +31,7 @@
     ".next/types/**/*.ts", 
     "tailwind.config.js", 
     ".contentlayer/generated"
-  ],
-  "exclude": ["node_modules"]
+, "src/scripts/initData.js"  ],
+  "exclude": ["node_modules"],
+  "typeRoots": ["./node_modules/@types", "./types"]
 }

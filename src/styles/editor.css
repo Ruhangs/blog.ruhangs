@@ -1,61 +1,63 @@
-.dark .ce-block--selected .ce-block__content,
-.dark .ce-inline-toolbar,
-.dark .codex-editor--narrow .ce-toolbox,
-.dark .ce-conversion-toolbar,
-.dark .ce-settings,
-.dark .ce-settings__button,
-.dark .ce-toolbar__settings-btn,
-.dark .cdx-button,
-.dark .ce-popover,
-.dark .ce-toolbar__plus:hover {
-  background: theme('colors.popover.DEFAULT');
-  color: inherit;
-	border-color: theme('colors.border');
+.ce-block--selected .ce-block__content,
+.theme-dark .ce-inline-toolbar,
+.codex-editor--narrow .ce-toolbox,
+.ce-conversion-toolbar,
+.ce-settings,
+.ce-settings__button,
+.ce-toolbar__settings-btn,
+.cdx-button,
+.ce-popover,
+.ce-popover-item,
+.ce-toolbar__plus:hover{
+  background: theme('backgroundColor.secondary');
+  color: theme('textColor.secondary');
+	border-color: theme('borderColor.dark');
 }
 
-.dark .ce-inline-tool,
-.dark .ce-conversion-toolbar__label,
-.dark .ce-toolbox__button,
-.dark .cdx-settings-button,
-.dark .ce-toolbar__plus {
-  color: inherit;
+.ce-inline-tool,
+.ce-conversion-toolbar__label,
+.ce-toolbox__button,
+.cdx-settings-button,
+.ce-toolbar__plus {
+  color: theme('textColor.secondary');
 }
 
-.dark .ce-popover__item-icon,
-.dark .ce-conversion-tool__icon {
-	background-color: theme('colors.muted.DEFAULT');
+.ce-popover__item-icon,
+.ce-conversion-tool__icon {
+	background-color: green;
 	box-shadow: none;
 }
 
-.dark .cdx-search-field {
-	border-color: theme('colors.border');
-	background: theme('colors.input');
+.cdx-search-field {
+	border-color: theme('borderColor.dark');
+	background: theme('backgroundColor.secondary');
 	color: inherit;
 }
 
-.dark ::selection {
-  background: theme('colors.accent.DEFAULT');
+::selection {
+  background: theme('backgroundColor.primary');
 }
 
-.dark .cdx-settings-button:hover,
-.dark .ce-settings__button:hover,
-.dark .ce-toolbox__button--active,
-.dark .ce-toolbox__button:hover,
-.dark .cdx-button:hover,
-.dark .ce-inline-toolbar__dropdown:hover,
-.dark .ce-inline-tool:hover,
-.dark .ce-popover__item:hover,
-.dark .ce-conversion-tool:hover,
-.dark .ce-toolbar__settings-btn:hover {
-  background-color:theme('colors.accent.DEFAULT');
-  color: theme('colors.accent.foreground');;
+.cdx-settings-button:hover,
+.ce-settings__button:hover,
+.ce-toolbox__button--active,
+.ce-toolbox__button:hover,
+.cdx-button:hover,
+.ce-inline-toolbar__dropdown:hover,
+.ce-inline-tool:hover,
+.ce-popover__item:hover,
+.ce-conversion-tool:hover,
+.ce-toolbar__settings-btn:hover {
+  background-color:theme('backgroundColor.primary');
+  color: theme('textColor.baseColor');;
 }
 
-.dark .cdx-notify--error {
-  background: theme('colors.destructive.DEFAULT') !important;
+
+.cdx-notify--error {
+  background: theme('backgroundColor.secondary') !important;
 }
 
-.dark .cdx-notify__cross::after,
-.dark .cdx-notify__cross::before {
-  background: white;
+.cdx-notify__cross::after,
+.cdx-notify__cross::before {
+  background: theme('backgroundColor.baseColor');
 }

@@ -7,11 +7,19 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       backgroundColor: {
         //utilities like `bg-base` and `bg-primary`
         baseColor: 'var(--color-base)',
         secondary: 'var(--color-secondary)',
+        thirdary: 'var(--color-thirdary)',
         'off-base': 'var(--color-off-base)',
         primary: 'var(--color-primary)',
         muted: 'var(--color-text-muted)',

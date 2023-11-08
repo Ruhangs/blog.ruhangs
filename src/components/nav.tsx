@@ -3,43 +3,36 @@ import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import { Back, Home, Git, Light, Dark, Login } from '@/assets/svg'
+// import { changeTheme } from "@/redux/features/themeSlice";
+// import { useAppDispatch } from "@/redux/hooks";
 
 export default function Nav() {
 
   const headerRef = useRef<HTMLInputElement>(null)
-  const miniMenuRef = useRef<HTMLInputElement>(null)
   const menuListRef = useRef<HTMLInputElement>(null)
   const pathName = usePathname()
 
-  // const themes = ["light", "dark"];
   const [theme, setTheme] = useState<String>("system");
+  // const dispatch = useAppDispatch()
 
   useEffect(() => {
-    let root = document.querySelector(':root')
-    let radio = document.querySelector('#myRadio')
-    if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      setTheme("dark")
-      document.documentElement.className = 'theme-dark'
-    } else {
-      setTheme("light")
-      document.documentElement.className = "theme-light"
-    }
+    switch (theme) {
+      case 'dark':
+        document.documentElement.className = 'theme-dark'
+        break;
+      case 'system':
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? setTheme("dark")
+          : setTheme("light")
+        break;
+      case 'light':
+        document.documentElement.className = 'theme-light'
+        break;
 
+      default:
+        break;
+    }
   }, [theme])
-
-
-  // 手机端打开列表
-  const openList = () => {
-    if (miniMenuRef.current?.classList.contains('active')) {
-      miniMenuRef.current.classList.remove('active')
-      menuListRef.current?.classList.remove('active')
-    } else {
-      miniMenuRef.current?.classList.add('active')
-      menuListRef.current?.classList.add('active')
-    }
-  }
-
-  
 
   return (
     <div className={pathName === '/login' || pathName === '/register' ? "hidden" : ""}>
@@ -60,7 +53,7 @@ export default function Nav() {
                 <span className='text-baseColor text-sm ml-[10px]'>请输入。。。。</span>
               </div> */}
               {/* <!-- 栏目 --> */}
-              <ul className="flex justify-between items-center text-[18px] font-normal text-baseColor w-[300px] mr-[40px]" id='nav' >
+              <ul className={pathName === '/dashboard' || new RegExp("\/dashboard\/.+").test(pathName) ? "hidden" : "flex justify-between items-center text-[18px] font-normal text-baseColor w-[300px] mr-[40px]"} id='nav' >
                 <li className={pathName === '/' ? "active" : ""}><Link href={"/"}>首 页</Link></li>
                 <li className={pathName === '/Blog' || new RegExp("\/Blog\/.+").test(pathName) ? "active" : ""}><Link href={"/Blog"}>博 客</Link></li>
                 <li className={pathName === '/Note' || new RegExp("\/Note\/.+").test(pathName) ? "active" : ""}><Link href={"/Note"}>笔 记</Link></li>
@@ -79,7 +72,7 @@ export default function Nav() {
                 </a>
               </div>
               <div className='ml-[30px]'>
-                <Link href={"/login"}><Login className="custom-svg" width="20" height="20" /></Link>
+                <Link href={"/dashboard"}><Login className="custom-svg" width="20" height="20" /></Link>
               </div>
             </div>
           </div>

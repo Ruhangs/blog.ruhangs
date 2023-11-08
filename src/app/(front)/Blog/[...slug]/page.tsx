@@ -87,7 +87,7 @@ export async function generateStaticParams(): Promise<
 export default async function PostPage({ params }: PostPageProps) {
   // 获得文章
   const post = await getPostFromParams(params)
-  // console.log(post);
+  console.log(post);
 
   if (!post) {
     notFound()

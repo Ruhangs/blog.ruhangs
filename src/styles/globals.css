@@ -5,27 +5,27 @@
 @layer base {
   .theme-light {
     --color-base: #fafafa;
-    --color-secondary: #eee; 
-    --color-text-base: #000; 
-    --color-text-secondary: #222; 
+    --color-secondary: #eee;
+    --color-text-base: #000;
+    --color-text-secondary: #222;
     --color-text-thirdary: #444;
     --color-off-base: theme('colors.gray.50');
     --color-text-muted: theme('colors.gray.600');
-    --color-text-muted-hover: theme('colors.gray.500'); 
-    --color-primary: #f4ba1d; 
+    --color-text-muted-hover: theme('colors.gray.500');
+    --color-primary: #f4ba1d;
     --color-tag: #eee
   }
 
   .theme-dark {
     --color-base: #222;
     --color-secondary: #000;
-    --color-text-base: #ddd; 
-    --color-text-secondary: #ddd; 
+    --color-text-base: #ddd;
+    --color-text-secondary: #ddd;
     --color-text-thirdary: #aaa;
-    --color-off-base: theme('colors.gray.800'); 
-    --color-text-muted:theme('colors.gray.300'); 
+    --color-off-base: theme('colors.gray.800');
+    --color-text-muted: theme('colors.gray.300');
     --color-text-muted-hover: theme('colors.gray.200');
-    --color-primary: #f4ba1d; 
+    --color-primary: #f4ba1d;
     --color-tag: #eee
   }
 
@@ -33,7 +33,7 @@
     fill: var(--color-text-base);
     cursor: pointer;
   }
-  
+
   .custom-svg:hover {
     fill: var(--color-primary);
     cursor: pointer;
@@ -50,8 +50,36 @@
   }
 
   .bgimg {
-    background-image: radial-gradient(farthest-side at -80% 10%,var(--color-primary),#d3c525,var(--color-secondary));
+    background-image: radial-gradient(farthest-side at -80% 10%, var(--color-primary), #d3c525, var(--color-secondary));
     background-attachment: fixed;
+  }
+
+  .scrollbar-h::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #a0a0a0;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #000;
+  }
+
+  .css-dev-only-do-not-override-2i2tap.ant-checkbox-wrapper {
+    color: var(--color-base);
   }
 
 }

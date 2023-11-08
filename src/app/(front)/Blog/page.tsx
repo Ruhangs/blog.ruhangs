@@ -10,6 +10,7 @@ import { Rocket } from "@/assets/svg"
 
 
 
+
 export default function Blog() {
   const posts = allPosts
     .filter((post) => post.published)
