@@ -20,6 +20,7 @@ export default async function Blogs() {
   const posts = await db.post.findMany({
     where: {
       authorId: user.id,
+      type: "blog"
     },
     select: {
       id: true,
@@ -34,7 +35,7 @@ export default async function Blogs() {
   return (
     <DashboardShell className='h-full bg-baseColor rounded-md px-5 py-5'>
       <DashboardHeader heading="文 章 管 理" text="创建或发布您的文章">
-        <PostCreateButton className=' bg-slate-500'/>
+        <PostCreateButton postType='blog' className=' bg-slate-500'/>
       </DashboardHeader>
       <div className='h-[85%]'>
         {posts?.length ? (
@@ -50,7 +51,7 @@ export default async function Blogs() {
             <EmptyPlaceholder.Description>
               您还没有任何文章，快开始创作吧！
             </EmptyPlaceholder.Description>
-            <PostCreateButton variant="outline" />
+            <PostCreateButton postType='blog' variant="outline" />
           </EmptyPlaceholder>
         )}
       </div>

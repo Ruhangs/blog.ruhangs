@@ -8,11 +8,14 @@ import { ButtonProps, buttonVariants } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
-interface PostCreateButtonProps extends ButtonProps {}
+interface PostCreateButtonProps extends ButtonProps {
+  postType: string
+}
 
 export function PostCreateButton({
   className,
   variant,
+  postType,
   ...props
 }: PostCreateButtonProps) {
   const router = useRouter()
@@ -28,6 +31,7 @@ export function PostCreateButton({
       },
       body: JSON.stringify({
         title: "无标题文章",
+        type: postType
       }),
     })
 

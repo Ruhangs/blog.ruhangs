@@ -1,47 +1,55 @@
-"use client"
-import { RefObject, useRef } from "react"
-import { useGoTop } from "@/hooks/useGoTop"
 import PostCard from "@/components/postCard"
 import TagCard from "@/components/tagCard"
-import { allPosts } from "contentlayer/generated"
-import { compareDesc } from "date-fns"
 import Link from "next/link"
 import { Rocket } from "@/assets/svg"
+import { db } from "@/lib/db"
 
 
+export default async function Blog() {
 
+  const allPosts = await db.post.findMany({
+    where:{
+      type: "blog",
+      published: true
+    },
+    select:{
+      id: true,
+        title: true,
+        published: true,
+        createdAt: true,
+        tags: true,
+        des:true
+    }
+  })
 
-export default function Blog() {
-  const posts = allPosts
-    .filter((post) => post.published)
-    .sort((a, b) => {
-      return compareDesc(new Date(a.date), new Date(b.date))
-    })
+  const allTags = await db.tag.findMany({
+    select: {
+      id: true,
+      name: true,
+    },
+  })
 
-  const backRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
-
-  useGoTop(backRef)
   return (
     <div className="min-h-screen bg-secondary bgimg">
-      <div ref={backRef} >
+      <div>
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
           <Rocket className='custom-svg' />
         </a>
       </div>
       <div className="flex w-9/12 mx-auto py-[100px] px-[100px] ">
         <div className="w-[300px] pr-[30px]">
-          <TagCard title={"标签"} />
+          <TagCard title={"标签"} tags={allTags} />
         </div>
         <div className="w-3/4 px-[20px] pb-[20px] rounded-lg bg-baseColor">
           {
-            posts?.length ? (
+            allPosts.length ? (
               <div>
-                {posts.map((post, index) => (
+                {allPosts.map((post) => (
                   <div
-                    key={post._id}
+                    key={post.id}
                   >
-                    <Link href={post.slug}>
-                      <PostCard title={post.title} abstract={post.description} tags={["xx", "xxx"]} time={post.date}></PostCard>
+                    <Link href={"/Blog/" + post.id}>
+                      <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} time={post.createdAt.toISOString()}></PostCard>
                     </Link>
                   </div>
                 ))}

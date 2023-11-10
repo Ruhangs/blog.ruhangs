@@ -7,7 +7,12 @@ import { db } from "@/lib/db"
 const postCreateSchema = z.object({
   title: z.string(),
   content: z.string().optional(),
-  count: z.number().optional()
+  count: z.number().optional(),
+  type: z.string()
+})
+
+const getSchema = z.object({
+  type: z.string().optional()
 })
 
 export async function GET() {
@@ -25,6 +30,7 @@ export async function GET() {
         title: true,
         published: true,
         createdAt: true,
+        tags: true
       },
       where: {
         authorId: user.id,
@@ -53,6 +59,7 @@ export async function POST(req: Request) {
         title: body.title,
         content: body.content,
         authorId: session.user.id,
+        type: body.type
       },
       select: {
         id: true,

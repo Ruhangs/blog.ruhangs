@@ -12,6 +12,10 @@ async function getPostForUser(postId: Post["id"], userId: User["id"]) {
       id: postId,
       authorId: userId,
     },
+    include: {
+      tags: true,
+      class: true
+    }
   })
 }
 
@@ -39,7 +43,11 @@ export default async function EditorPage({ params }: EditorPageProps) {
         title: post.title,
         content: post.content,
         published: post.published,
+        image: post.image,
+        des: post.des
       }}
+      selectTag={post.tags}
+      selectClass={post.class}
     />
   )
 }

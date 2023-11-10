@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import '../styles/globals.css'
 import { NextAuthProvider } from './session'
 // import { Providers } from '@/redux/providers'
-import StyledComponentsRegistry from '../lib/AntdRegistry';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <NextAuthProvider>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          {children}
         </NextAuthProvider>
       </body>
     </html>

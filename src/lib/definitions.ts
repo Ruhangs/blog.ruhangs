@@ -1,5 +1,5 @@
 export interface User {
-  id: Number,
+  id: String,
   email: String,
   name: String,
   password: String,
@@ -12,7 +12,7 @@ interface Post {
 }
 
 interface Profile {
-  id: Number,
+  id: String,
   avatar: String,
   introduction: String,
   weixin: String,
@@ -22,5 +22,5 @@ interface Profile {
   hometown: String,
   grade: String,
   user: User,
-  userId: Number
+  userId: String
 }

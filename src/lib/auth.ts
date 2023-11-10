@@ -35,6 +35,7 @@ export const authOptions: NextAuthOptions = {
         email: {},
         password: {}
       },
+      //@ts-ignore
       async authorize(credentials) {
         if (!credentials) {
           return null

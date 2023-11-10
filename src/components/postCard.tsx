@@ -1,16 +1,19 @@
 import React from 'react'
 import { Time, DianZhan } from '@/assets/svg'
 import { formatDate } from "@/lib/utils"
+import { Tag } from '@prisma/client'
 
 interface Props {
   title: string,
   abstract: string | undefined,
-  tags: string[],
+  tags: Tag[],
   time: string
 }
 
 export default function PostCard(props: Props) {
   const { title, abstract, tags, time } = props
+
+  console.log(tags);
   return (
     <div className='border-b-[1px]'>
       <div className="min-w-0 my-[10px]" >
@@ -20,8 +23,8 @@ export default function PostCard(props: Props) {
           <div className='text-[14px]'>
             {
               tags ? (
-                tags.map((tag, index) => (
-                  <span key={index} className='inline-box rounded-sm px-[3px] py-[1px] mr-[5px] pointer-events-none bg-tag text-thirdary'>{tag}</span>
+                tags.map((tag) => (
+                  <span key={tag.id} className='inline-box rounded-sm px-[3px] py-[1px] mr-[5px] cursor-default bg-tag text-thirdary'>{tag.name}</span>
                 ))
               ) : (
                 <span></span>

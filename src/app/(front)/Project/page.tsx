@@ -1,30 +1,41 @@
-"use client"
-import { RefObject, useRef } from "react"
-import { useGoTop } from "@/hooks/useGoTop"
 import { Rocket } from "@/assets/svg"
 import ProjectCard from "@/components/projectCard"
+import { db } from "@/lib/db"
 
-export default function Project() {
-  const backRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
+export default async function Project() {
 
-  useGoTop(backRef)
+  const allPosts = await db.post.findMany({
+    where: {
+      type: "project",
+      published: true
+    },
+    select: {
+      id: true,
+      title: true,
+      image: true,
+      tags: true,
+      des: true
+    }
+  })
+
+  console.log(allPosts);
+
   return (
     <div className="min-h-screen bg-secondary bgimg">
-      <div ref={backRef} >
+      <div  >
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
           <Rocket className='custom-svg' />
         </a>
       </div>
       <div className="w-9/12 mx-auto pt-[100px] pb-[30px] px-[100px] ">
         <div className="bg-baseColor rounded-xl py-[20px] px-[20px]">
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+          {
+            allPosts ? allPosts.map((post) => {
+              return <ProjectCard key={post.id} title={post.title} image={post.image || ""} des={post.des || ""} tags={post.tags} />
+            }) : (
+              <p className="text-center mt-[100px] text-baseColor text-[26px]">暂 无 项 目 文 档</p>
+            )
+          }
         </div>
       </div>
     </div>

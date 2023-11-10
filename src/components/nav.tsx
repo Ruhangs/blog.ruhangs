@@ -35,7 +35,7 @@ export default function Nav() {
   }, [theme])
 
   return (
-    <div className={pathName === '/login' || pathName === '/register' ? "hidden" : ""}>
+    <div className={pathName === '/login' || pathName === '/register'  ? "hidden" : ""}>
       <div className="fixed z-[10] bg-baseColor w-full h-[70px] shadow-lg" ref={headerRef}>
         <div className="ml-[60px]" onClick={() => history.back()}>
           <Back className="hidden" />
@@ -53,7 +53,7 @@ export default function Nav() {
                 <span className='text-baseColor text-sm ml-[10px]'>请输入。。。。</span>
               </div> */}
               {/* <!-- 栏目 --> */}
-              <ul className={pathName === '/dashboard' || new RegExp("\/dashboard\/.+").test(pathName) ? "hidden" : "flex justify-between items-center text-[18px] font-normal text-baseColor w-[300px] mr-[40px]"} id='nav' >
+              <ul className={pathName === '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName)  ? "hidden" : "flex justify-between items-center text-[18px] font-normal text-baseColor w-[300px] mr-[40px]"} id='nav' >
                 <li className={pathName === '/' ? "active" : ""}><Link href={"/"}>首 页</Link></li>
                 <li className={pathName === '/Blog' || new RegExp("\/Blog\/.+").test(pathName) ? "active" : ""}><Link href={"/Blog"}>博 客</Link></li>
                 <li className={pathName === '/Note' || new RegExp("\/Note\/.+").test(pathName) ? "active" : ""}><Link href={"/Note"}>笔 记</Link></li>

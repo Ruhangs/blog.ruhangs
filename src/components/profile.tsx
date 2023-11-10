@@ -2,20 +2,28 @@
 import React, { useRef } from 'react'
 import { QQ, Wechat, Mail, Github } from '@/assets/svg'
 import Image from 'next/image'
+import { Profile } from '@prisma/client'
 
-export default function Profile() {
+interface Props {
+  name: string,
+  email: string,
+  profile: Profile | null
+}
 
-  const profileInfo = {
-    avatar: "xxx",
-    name: "rhs",
-    introduction: "每天进步一点点",
-    weixin: "weixin",
-    email: 'email',
-    qq: 'qq',
-    university: "university",
-    hometown: 'hometown',
-    grade: 'grade'
-  }
+export default function Profile(profileInfo: Props) {
+  console.log(profileInfo.profile);
+
+  // const profileInfo = {
+  //   avatar: "xxx",
+  //   name: "rhs",
+  //   introduction: "每天进步一点点",
+  //   weixin: "weixin",
+  //   email: 'email',
+  //   qq: 'qq',
+  //   university: "university",
+  //   hometown: 'hometown',
+  //   grade: 'grade'
+  // }
 
   const mycardRef = useRef(null)
 
@@ -37,12 +45,12 @@ export default function Profile() {
           </div>
           <h3 className='text-[22px] font-bold text-primary mt-[5px]'>{profileInfo.name}</h3>
           <p className="text-[12px]">
-            <span>{profileInfo.introduction}</span>
+            <span>{profileInfo.profile?.introduction}</span>
           </p>
         </div>
         <div className="border border-dashed my-[20px]"></div>
         <div className="px-[30px] flex items-center justify-evenly">
-          <a title={`wx:${profileInfo.weixin}`}>
+          <a title={`wx:${profileInfo.profile?.weixin}`}>
             <Wechat className="custom-svg" />
           </a>
           <a title="github:ruhangs" href="https://github.com/Ruhangs">
@@ -51,7 +59,7 @@ export default function Profile() {
           <a title={`email:${profileInfo.email}`} href={`Mailto:${profileInfo.email}?Subject=邮箱标题&amp;Body=邮箱内容！`}>
             <Mail className="custom-svg" />
           </a>
-          <a title={`QQ:${profileInfo.qq}`}>
+          <a title={`QQ:${profileInfo.profile?.qq}`}>
             <QQ className="custom-svg" />
           </a>
         </div>
@@ -59,16 +67,13 @@ export default function Profile() {
 
         <div className='flex justify-between h-[30px] leading-[30px]'>
           <span>毕业院校</span>
-          <span className='text-[#747474]'>{profileInfo.university}</span>
+          <span className='text-[#747474]'>{profileInfo.profile?.university}</span>
         </div>
         <div className='flex justify-between h-[30px] leading-[30px]'>
           <span>所在城市</span>
-          <span className='text-[#747474]'>{profileInfo.hometown}</span>
+          <span className='text-[#747474]'>{profileInfo.profile?.hometown}</span>
         </div>
-        <div className='flex justify-between h-[30px] leading-[30px]'>
-          <span>年级</span>
-          <span className='text-[#747474]'>{profileInfo.grade}</span>
-        </div>
+        
 
         <div className="border border-dashed my-[20px]"></div>
 

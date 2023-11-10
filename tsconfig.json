@@ -21,7 +21,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "include": [
@@ -30,8 +29,8 @@
     "**/*.tsx", 
     ".next/types/**/*.ts", 
     "tailwind.config.js", 
-    ".contentlayer/generated"
-, "src/scripts/initData.js"  ],
+    ".contentlayer/generated", 
+    "src/scripts/initData.js"  ],
   "exclude": ["node_modules"],
   "typeRoots": ["./node_modules/@types", "./types"]
 }

@@ -1,4 +1,3 @@
-const { withContentlayer } = require('next-contentlayer');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,9 +6,18 @@ const nextConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"]
     }); // 针对 SVG 的处理规则
-
     return config;
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/ducx0mgen/image/upload/**',
+      },
+    ],
+  },
 }
 
-module.exports = withContentlayer(nextConfig)
+module.exports = nextConfig
