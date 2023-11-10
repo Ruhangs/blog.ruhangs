@@ -2,8 +2,6 @@ import Profile from '@/components/profile'
 import { Rocket } from "@/assets/svg"
 import { db } from '@/lib/db'
 import Link from 'next/link'
-import { Award } from 'lucide-react'
-
 
 export default async function Home() {
 
