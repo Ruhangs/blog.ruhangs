@@ -51,7 +51,7 @@ export default async function Home() {
 
 
   return (
-    <div className='min-h-screen bg-secondary text-baseColor bgimg'>
+    <div className='flex-grow  bg-secondary text-baseColor bgimg'>
       <div id="goTop">
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
           {/* <Rocket className='custom-svg' /> */}

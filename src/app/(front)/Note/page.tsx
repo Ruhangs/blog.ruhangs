@@ -30,10 +30,10 @@ export default async function Note() {
   })
 
   return (
-    <div className="min-h-screen bg-secondary bgimg">
+    <div className="flex-grow bg-secondary bgimg">
       <div>
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
-          <Rocket className='custom-svg' />
+          {/* <Rocket className='custom-svg' /> */}
         </a>
       </div>
       <div className="flex w-9/12 mx-auto py-[100px] px-[100px] ">

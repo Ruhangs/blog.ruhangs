@@ -69,12 +69,17 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
         placeholder: "请在此输入正文...",
         toolbar: [
           "emoji", "headings", "bold", "italic", "strike", "|", "line", "quote", "list", "ordered-list", "check", "outdent", "indent",
-          "code", "inline-code", "link", "table", "|", "insert-after", "insert-before", "undo", "redo", "upload", "edit-mode",
-          "both", "preview", "fullscreen", "outline", "code-theme", "export"
+          "code", "inline-code", "link", "table", "|", "insert-after", "insert-before", "undo", "redo", "upload", "preview", "fullscreen", "code-theme",
         ],
         toolbarConfig: {
           pin: true
         },
+        outline: {
+          enable: true,
+          position: "right"
+        },
+        mode: "wysiwyg",
+        minHeight: 500
       });
       setIsPublished(post.published)
     }
@@ -238,11 +243,11 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid w-full gap-5 ">
-        <div className="flex w-full items-center justify-between px-[10px]">
+        <div className="flex w-full items-center justify-between ">
           <div className="flex items-center space-x-10">
             <button
               onClick={() => router.back()}
-              className={cn(buttonVariants({ variant: "ghost" }))}
+              className={`${cn(buttonVariants())} bg-slate-500`}
             >
               <>
                 <Icons.chevronLeft className="mr-2 h-4 w-4" />
@@ -270,20 +275,23 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
             </button>
           </div>
         </div>
-        <div className="flex">
-          <div className="flex-col items-center w-[90%] mx-auto">
-            <div className="w-[90%] mx-auto mb-[20px] flex items-center">
-              <div className="w-[30%] mr-[30px]">
+
+
+        <div className="flex-col  rounded-xl px-[20px] w-full">
+          <div className="flex">
+            <div className="flex-col items-center justify-center">
+              {/* 题目和描述 */}
+              <div className="w-[300px] mx-auto mb-[10px]">
                 <label htmlFor="title" ><p className="inline-block mb-[8px]">题目:</p></label>
                 <Input
                   id="title"
                   type="text"
                   defaultValue={post.title}
-                  className="w-[250px] text-lg active:border-none mr-[30px]"
+                  className="text-lg"
                   onInput={changTitle}
                 />
               </div>
-              <div className="w-[60%]">
+              <div className="w-[300px] mx-auto">
                 <label htmlFor="desc"><p className="inline-block mb-[8px]">描述:</p></label>
                 <Input
                   id="desc"
@@ -292,44 +300,51 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
                   onInput={changDesc}
                 />
               </div>
-            </div>
-            <div className="h-[67vh] overflow-y-auto scrollbar-h">
-              <div id="vditor" className="vditor" />
-            </div>
-          </div>
-          <div className="w-[200px] ml-[20px] mr-[60px] mt-[20px]">
-            <div>
-              <div className="w-[300px] flex items-center">
-                分类：
-                <Input type='text' onChange={handleInput} className={!classHidden ? "hidden" : 'w-[100px] h-6'} />
-                <Add className={classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("class", true)} />
-                <Submit className={!classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleSubmitName("class")} />
-                <Cancel className={!classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("class", false)} />
+              {/* 分类 */}
+              <div className="w-[300px] mx-auto mt-[10px]">
+                <div>
+                  <div className="w-[300px] flex items-center">
+                    分类：
+                    <Input type='text' onChange={handleInput} className={!classHidden ? "hidden" : 'w-[100px] h-6'} />
+                    <Add className={classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("class", true)} />
+                    <Submit className={!classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleSubmitName("class")} />
+                    <Cancel className={!classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("class", false)} />
+                  </div>
+                  <CheckBox
+                    className="flex flex-wrap w-[300px] max-h-[20vh] mt-[10px] p-[10px] border rounded-lg overflow-y-auto scrollbar"
+                    options={allClass}
+                    defaultValue={selectClasses}
+                    onChange={changeClass}
+                    type="class"
+                  />
+                </div>
+                <div className="mt-[10px]">
+                  <div className="w-[300px] flex items-center">
+                    标签：
+                    <Input type='text' onChange={handleInput} className={!tagHidden ? "hidden" : 'w-[100px] h-6'} />
+                    <Add className={tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("tag", true)} />
+                    <Submit className={!tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleSubmitName("tag")} />
+                    <Cancel className={!tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("tag", false)} />
+                  </div>
+                  <CheckBox
+                    className="flex flex-wrap w-[300px] max-h-[20vh] mt-[10px] p-[10px] border rounded-lg overflow-y-auto scrollbar"
+                    options={allTag}
+                    defaultValue={selectTags}
+                    onChange={change}
+                    type="tag"
+                  />
+                </div>
               </div>
-              <CheckBox
-                className="flex flex-wrap w-[250px] h-[25vh] mr-[50px] mt-[10px] p-[10px] border rounded-lg overflow-y-auto scrollbar"
-                options={allClass}
-                defaultValue={selectClasses}
-                onChange={changeClass}
-                type="class"
-              />
             </div>
-            <div className="mt-[30px]">
-              <div className="w-[300px] flex items-center">
-                标签：
-                <Input type='text' onChange={handleInput} className={!tagHidden ? "hidden" : 'w-[100px] h-6'} />
-                <Add className={tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("tag", true)} />
-                <Submit className={!tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleSubmitName("tag")} />
-                <Cancel className={!tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("tag", false)} />
+            {/* 编辑器 */}
+            <div className="ml-[40px] w-full">
+              正文：
+              <div className="max-h-[70vh] mt-[8px] overflow-y-auto scrollbar-h">
+
+                <div id="vditor" className="vditor" />
               </div>
-              <CheckBox
-                className="flex flex-wrap w-[250px] h-[25vh] mr-[50px] mt-[10px] p-[10px] border rounded-lg overflow-y-auto scrollbar"
-                options={allTag}
-                defaultValue={selectTags}
-                onChange={change}
-                type="tag"
-              />
             </div>
+
           </div>
         </div>
       </div>

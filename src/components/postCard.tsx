@@ -13,7 +13,6 @@ interface Props {
 export default function PostCard(props: Props) {
   const { title, abstract, tags, time } = props
 
-  console.log(tags);
   return (
     <div className='border-b-[1px]'>
       <div className="min-w-0 my-[10px]" >
@@ -24,7 +23,7 @@ export default function PostCard(props: Props) {
             {
               tags ? (
                 tags.map((tag) => (
-                  <span key={tag.id} className='inline-box rounded-sm px-[3px] py-[1px] mr-[5px] cursor-default bg-tag text-thirdary'>{tag.name}</span>
+                  <span key={tag.id} className='py-[1px] mr-[5px] cursor-default text-thirdary'>{tag.name}</span>
                 ))
               ) : (
                 <span></span>

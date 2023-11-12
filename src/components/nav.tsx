@@ -40,21 +40,21 @@ export default function Nav() {
         <div className="w-9/12 mx-auto flex justify-between items-center">
           <div>
             <Link href={"/"}>
-              <Home width="170" height="50" className="custom-svg" />
+              <Home width="170" height="50" className="fill-baseColor" />
             </Link>
           </div>
           <div >
             {/* <!-- 列表 --> */}
-            <div className="flex justify-between  items-center h-[70px]" ref={menuListRef}>
+            <div className="flex justify-between items-center h-[70px]" ref={menuListRef}>
               {/* <div className='w-[200px] h-[30px] mr-[40px] border rounded-xl leading-[30px] '>
                 <span className='text-baseColor text-sm ml-[10px]'>请输入。。。。</span>
               </div> */}
               {/* <!-- 栏目 --> */}
               <ul className={pathName === '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName)  ? "hidden" : "flex justify-between items-center text-[18px] font-normal text-baseColor w-[300px] mr-[40px]"} id='nav' >
-                <li className={pathName === '/' ? "active" : ""}><Link href={"/"}>首 页</Link></li>
-                <li className={pathName === '/Blog' || new RegExp("\/Blog\/.+").test(pathName) ? "active" : ""}><Link href={"/Blog"}>博 客</Link></li>
-                <li className={pathName === '/Note' || new RegExp("\/Note\/.+").test(pathName) ? "active" : ""}><Link href={"/Note"}>笔 记</Link></li>
-                <li className={pathName === '/Project' || new RegExp("\/Project\/.+").test(pathName) ? "active" : ""}><Link href={"/Project"}>项 目</Link></li>
+                <li className={pathName === '/' ? "active" : "hover:text-primary"}><Link href={"/"}>首 页</Link></li>
+                <li className={pathName === '/Blog' || new RegExp("\/Blog\/.+").test(pathName) ? "active" : "hover:text-primary"}><Link href={"/Blog"}>博 客</Link></li>
+                <li className={pathName === '/Note' || new RegExp("\/Note\/.+").test(pathName) ? "active" : "hover:text-primary"}><Link href={"/Note"}>笔 记</Link></li>
+                <li className={pathName === '/Project' || new RegExp("\/Project\/.+").test(pathName) ? "active" : "hover:text-primary"}><Link href={"/Project"}>项 目</Link></li>
               </ul>
               {/* <!-- 开关灯 --> */}
               <div className="h-[20px] w-[20px] flex justify-center align-middle cursor-pointer" id="myRadio" >

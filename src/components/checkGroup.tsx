@@ -35,13 +35,13 @@ export default function CheckGroup({ options, defaultValue, onChange, className,
       {
         options.length ? options.map((option) => {
           return (
-              <div className='flex items-center w-[100px] h-[22px]' key={option.id} >
+              <div className='flex items-center w-[90px] h-[22px]' key={option.id} >
                 <Input
                   type="checkbox"
                   value={option.id}
                   defaultChecked={defaultValue.findIndex((tag) => (tag.id === option.id)) !== -1}
                   onChange={() => handelChange(option)}
-                  className='w-[16px] mr-[6px]'
+                  className='w-[14px] mr-[6px]'
                 />
                 {option.name}
               </div>

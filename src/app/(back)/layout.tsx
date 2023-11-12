@@ -7,8 +7,8 @@ interface FrontLayoutProps {
 
 export default function AuthLayout({ children }: FrontLayoutProps) {
   return (
-    <div>
-      <Nav></Nav> 
+    <div className="min-h-screen flex flex-col">
+      <Nav></Nav>
       {children}
       <Footer className="bg-secondary"></Footer>
     </div>
