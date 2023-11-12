@@ -12,13 +12,8 @@ export default async function Note() {
       type: "note",
       published: true
     },
-    select: {
-      id: true,
-      title: true,
-      published: true,
-      createdAt: true,
+    include: {
       tags: true,
-      des: true
     }
   })
 

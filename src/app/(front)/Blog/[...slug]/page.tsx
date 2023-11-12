@@ -47,28 +47,27 @@ export default async function PostPage({ params }: PostPageProps) {
 
 
   return (
-    <div className="min-h-screen bg-secondary text-baseColor">
+    <div className="flex-grow bg-secondary text-baseColor">
       <article className="w-9/12 mx-auto flex pt-[100px] pb-[50px] px-[50px]">
         <Link
           href="/Blog"
           className="fixed top-[100px] flex"
         >
           <Back className="custom-svg mr-2 h-6 w-6" />
-          返回
         </Link>
         <div className="flex-1 pl-[100px]">
           <div>
+            <h1 className="mt-1 inline-block font-heading text-4xl mb-3 leading-tight lg:text-5xl">
+              {post.title}
+            </h1>
             {post.createdAt && (
               <time
                 // dateTime={post.createdAt}
-                className="block text-sm text-muted-foreground"
+                className="block text-sm text-thirdary mb-5"
               >
                 发布于 {post.createdAt.toISOString().split("T")[0]}
               </time>
             )}
-            <h1 className="mt-2 inline-block font-heading text-4xl leading-tight lg:text-5xl">
-              {post.title}
-            </h1>
           </div>
           {post.image && (
             <Image

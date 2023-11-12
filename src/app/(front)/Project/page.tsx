@@ -9,16 +9,11 @@ export default async function Project() {
       type: "project",
       published: true
     },
-    select: {
-      id: true,
-      title: true,
-      image: true,
+    include: {
       tags: true,
-      des: true
     }
   })
 
-  console.log(allPosts);
 
   return (
     <div className="flex-grow bg-secondary bgimg">
