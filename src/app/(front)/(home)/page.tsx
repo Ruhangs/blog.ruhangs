@@ -10,7 +10,8 @@ export default async function Home() {
       OR:[
         {type: "blog"},
         {type: "note"}
-      ]
+      ],
+      published: true
     },
     select: {
       id: true,
@@ -27,13 +28,15 @@ export default async function Home() {
 
   const allBlogs = await db.post.findMany({
     where: {
-      type: "blog"
+      type: "blog",
+      published: true,
     }
   })
 
   const allNotes = await db.post.findMany({
     where: {
-      type: "note"
+      type: "note",
+      published: true,
     }
   })
 

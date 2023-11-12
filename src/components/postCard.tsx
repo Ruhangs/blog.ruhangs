@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { Time, DianZhan } from '@/assets/svg'
 import { formatDate } from "@/lib/utils"
