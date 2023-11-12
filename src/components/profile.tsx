@@ -11,19 +11,6 @@ interface Props {
 }
 
 export default function Profile(profileInfo: Props) {
-  console.log(profileInfo.profile);
-
-  // const profileInfo = {
-  //   avatar: "xxx",
-  //   name: "rhs",
-  //   introduction: "每天进步一点点",
-  //   weixin: "weixin",
-  //   email: 'email',
-  //   qq: 'qq',
-  //   university: "university",
-  //   hometown: 'hometown',
-  //   grade: 'grade'
-  // }
 
   const mycardRef = useRef(null)
 

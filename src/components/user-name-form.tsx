@@ -79,7 +79,9 @@ export function UserNameForm({ user, profile, className, ...props }: UserNameFor
       description: "Your name has been updated.",
     })
 
-    router.refresh()
+    router.push(window.location.href);
+    router.refresh();
+
   }
 
   return (

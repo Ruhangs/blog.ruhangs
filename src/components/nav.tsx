@@ -3,8 +3,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import { Back, Home, Git, Light, Dark, Login } from '@/assets/svg'
-// import { changeTheme } from "@/redux/features/themeSlice";
-// import { useAppDispatch } from "@/redux/hooks";
 
 export default function Nav() {
 
@@ -13,7 +11,6 @@ export default function Nav() {
   const pathName = usePathname()
 
   const [theme, setTheme] = useState<String>("system");
-  // const dispatch = useAppDispatch()
 
   useEffect(() => {
     switch (theme) {

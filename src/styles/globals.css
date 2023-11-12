@@ -50,7 +50,8 @@
   }
 
   .bgimg {
-    background-image: radial-gradient(farthest-side at -80% 10%, var(--color-primary), #d3c525, var(--color-secondary));
+    background-image: radial-gradient(farthest-side at -30% 0%,#f4e224, transparent);
+    /* background-image: radial-gradient(closest-corner at 20%, #faec51, transparent); */
     background-attachment: fixed;
   }
 

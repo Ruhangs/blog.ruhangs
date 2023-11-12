@@ -2,23 +2,23 @@
 import React, { useState } from 'react'
 import { Input } from './ui/input'
 import { Tag } from '@prisma/client'
-import { Sarpanch } from 'next/font/google'
 
 interface Props {
   options: Tag[],
   defaultValue: Tag[],
   onChange: Function
-  className: string
+  className: string,
+  type: string
 }
 
 
-export default function CheckGroup({ options, defaultValue, onChange, className }: Props) {
+export default function CheckGroup({ options, defaultValue, onChange, className, type }: Props) {
 
   const handelChange = (value: Tag) => {
     let newValue = [...defaultValue]
     let index = newValue.findIndex((tag) => {
       return tag.id === value.id
-    }) 
+    })
     if (index !== -1) {
       // 如果已被选中，则从数组中删除该选项
       newValue.splice(index, 1)
@@ -30,24 +30,23 @@ export default function CheckGroup({ options, defaultValue, onChange, className 
     onChange(newValue)
   }
 
-
   return (
     <div className={className}>
       {
-        options ? options.map((option) => {
+        options.length ? options.map((option) => {
           return (
-            <div className='flex items-center w-[100px] h-[20px]' key={option.id} >
-              <Input
-                type="checkbox"
-                value={option.id}
-                defaultChecked={defaultValue.findIndex((tag) => (tag.id === option.id)) !== -1}
-                onChange={() => handelChange(option)}
-                className='w-[16px] mr-[6px]'
-              />
-              {option.name}
-            </div>
+              <div className='flex items-center w-[100px] h-[22px]' key={option.id} >
+                <Input
+                  type="checkbox"
+                  value={option.id}
+                  defaultChecked={defaultValue.findIndex((tag) => (tag.id === option.id)) !== -1}
+                  onChange={() => handelChange(option)}
+                  className='w-[16px] mr-[6px]'
+                />
+                {option.name}
+              </div>
           )
-        }) : <div>暂无分类标签</div>
+        }) : <p>暂无分类标签，请添加...</p>
       }
     </div>
   )

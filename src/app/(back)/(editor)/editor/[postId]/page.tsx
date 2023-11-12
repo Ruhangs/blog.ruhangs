@@ -19,6 +19,12 @@ async function getPostForUser(postId: Post["id"], userId: User["id"]) {
   })
 }
 
+async function getInitData() {
+  const allTags = await db.tag.findMany()
+  const allClasses = await db.class.findMany()
+  return { allTags, allClasses }
+}
+
 interface EditorPageProps {
   params: { postId: string }
 }
@@ -31,6 +37,7 @@ export default async function EditorPage({ params }: EditorPageProps) {
   }
 
   const post = await getPostForUser(params.postId, user.id)
+  const res = await getInitData()
 
   if (!post) {
     notFound()
@@ -48,6 +55,8 @@ export default async function EditorPage({ params }: EditorPageProps) {
       }}
       selectTag={post.tags}
       selectClass={post.class}
+      allTag={res.allTags}
+      allClass={res.allClasses}
     />
   )
 }

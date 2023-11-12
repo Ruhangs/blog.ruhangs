@@ -1,11 +1,10 @@
 "use client"
 import React, { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Class, Post, Tag } from "@prisma/client"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import Image from 'next/image'
 import Vditor from "vditor";
 import "@/styles/vditor.css";
 
@@ -17,17 +16,20 @@ import { Icons } from "@/components/icons"
 import { Input } from "./ui/input"
 import Upload from "./upload"
 import CheckBox from "./checkGroup"
+import { Add, Cancel, Submit } from "@/assets/svg"
 
 interface EditorProps {
   post: Pick<Post, "id" | "title" | "content" | "published" | "image" | "des">,
   selectTag: Tag[],
   selectClass: Class[]
+  allTag: Tag[],
+  allClass: Class[]
 }
 
 type FormData = z.infer<typeof postPatchSchema>
 
 
-export function Editor({ post, selectTag, selectClass }: EditorProps) {
+export function Editor({ post, selectTag, selectClass, allTag, allClass }: EditorProps) {
   const { handleSubmit } = useForm<FormData>({
     resolver: zodResolver(postPatchSchema),
   })
@@ -35,14 +37,16 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
   const [isSaving, setIsSaving] = useState<boolean>(false)
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isPublished, setIsPublished] = useState<boolean>(false)
-  const [allTags, setAllTags] = useState<Tag[]>([])
-  const [allClasses, setAllClasses] = useState<Class[]>([])
   const [selectTags, setSelectTags] = useState<Tag[]>(selectTag)
   const [selectClasses, setSelectClasses] = useState<Class[]>(selectClass)
   const [newtitle, setTitle] = useState<string>(post.title)
   const [newDes, setDes] = useState<string>(post.des || "")
   // 图片上传
   const [imageSrc, setImageSrc] = useState(post.image || "");
+  // 标签
+  const [tagHidden, setTagHidden] = useState<boolean>(false)
+  const [classHidden, setClassHidden] = useState<boolean>(false)
+
 
   // md编辑器
   const [vd, setVd] = useState<Vditor>();
@@ -57,7 +61,6 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
   // 初始化编辑器
   React.useEffect(() => {
     if (isMounted) {
-      getInitData()
       const vditor = new Vditor("vditor", {
         after: () => {
           vditor.setValue(post.content?.toString() || "");
@@ -66,53 +69,16 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
         placeholder: "请在此输入正文...",
         toolbar: [
           "emoji", "headings", "bold", "italic", "strike", "|", "line", "quote", "list", "ordered-list", "check", "outdent", "indent",
-          "code", "inline-code", "insert-after", "insert-before", "undo", "redo", "upload", "link", "table", "edit-mode",
+          "code", "inline-code", "link", "table", "|", "insert-after", "insert-before", "undo", "redo", "upload", "edit-mode",
           "both", "preview", "fullscreen", "outline", "code-theme", "export"
         ],
         toolbarConfig: {
           pin: true
         },
-        counter: {
-          enable: true
-        }
       });
       setIsPublished(post.published)
     }
   }, [isMounted, post.content, post.published])
-
-  // 获取初始值
-  async function getInitData() {
-    const response = await fetch("/api/tags", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    if (!response?.ok) {
-      return toast({
-        title: "Something went wrong.",
-        description: "Your post was not saved. Please try again.",
-        variant: "destructive",
-      })
-    }
-    const responseClass = await fetch("/api/classes", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    if (!response?.ok) {
-      return toast({
-        title: "Something went wrong.",
-        description: "Your post was not saved. Please try again.",
-        variant: "destructive",
-      })
-    }
-    setAllTags(await response.json())
-    setAllClasses(await responseClass.json())
-  }
 
   // 提交数据
   async function onSubmit(data: FormData) {
@@ -170,6 +136,7 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
     setTitle(e.target.value)
   }
 
+  // 介绍
   const changDesc = (e: any) => {
     setDes(e.target.value)
   }
@@ -188,6 +155,79 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
     }).then(r => r.json());
 
     setImageSrc(data.secure_url);
+  }
+
+  const [name, setName] = useState<string>()
+
+  const handleInput = (e: any) => {
+    setName(e.target.value)
+  }
+
+
+
+  const handleDisplay = (type: string, value: boolean) => {
+    if (type === "class") {
+      setClassHidden(value)
+    } else {
+      setTagHidden(value)
+    }
+
+  }
+
+  const handleSubmitName = async (type: string) => {
+    // 与后台交互
+    if (type === "class") {
+      const response = await fetch(`/api/classes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+        }),
+      })
+
+      if (!response?.ok) {
+        return toast({
+          title: "Something went wrong.",
+          description: "Your post was not saved. Please try again.",
+          variant: "destructive",
+        })
+      }
+      setClassHidden(false)
+      router.push(window.location.href);
+      router.refresh();
+
+      return toast({
+        description: "Your post has been saved.",
+      })
+    } else {
+      const response = await fetch(`/api/tags`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+        }),
+      })
+
+
+      if (!response?.ok) {
+        return toast({
+          title: "Something went wrong.",
+          description: "Your post was not saved. Please try again.",
+          variant: "destructive",
+        })
+      }
+
+      setTagHidden(false)
+      router.push(window.location.href);
+      router.refresh();
+      return toast({
+        description: "提交成功",
+      })
+    }
   }
 
   // 未挂载返回null
@@ -231,7 +271,7 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
           </div>
         </div>
         <div className="flex">
-          <div className="flex-col items-center w-[90%] mx-auto ">
+          <div className="flex-col items-center w-[90%] mx-auto">
             <div className="w-[90%] mx-auto mb-[20px] flex items-center">
               <div className="w-[30%] mr-[30px]">
                 <label htmlFor="title" ><p className="inline-block mb-[8px]">题目:</p></label>
@@ -246,7 +286,7 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
               <div className="w-[60%]">
                 <label htmlFor="desc"><p className="inline-block mb-[8px]">描述:</p></label>
                 <Input
-                  id="desc" 
+                  id="desc"
                   defaultValue={post.des || ""}
                   className="text-lg"
                   onInput={changDesc}
@@ -259,21 +299,35 @@ export function Editor({ post, selectTag, selectClass }: EditorProps) {
           </div>
           <div className="w-[200px] ml-[20px] mr-[60px] mt-[20px]">
             <div>
-              分类：
+              <div className="w-[300px] flex items-center">
+                分类：
+                <Input type='text' onChange={handleInput} className={!classHidden ? "hidden" : 'w-[100px] h-6'} />
+                <Add className={classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("class", true)} />
+                <Submit className={!classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleSubmitName("class")} />
+                <Cancel className={!classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("class", false)} />
+              </div>
               <CheckBox
-                className="flex w-[250px] h-[25vh] mr-[50px] mt-[10px] p-[10px] border rounded-lg overflow-y-auto scrollbar"
-                options={allClasses}
+                className="flex flex-wrap w-[250px] h-[25vh] mr-[50px] mt-[10px] p-[10px] border rounded-lg overflow-y-auto scrollbar"
+                options={allClass}
                 defaultValue={selectClasses}
                 onChange={changeClass}
+                type="class"
               />
             </div>
             <div className="mt-[30px]">
-              标签：
+              <div className="w-[300px] flex items-center">
+                标签：
+                <Input type='text' onChange={handleInput} className={!tagHidden ? "hidden" : 'w-[100px] h-6'} />
+                <Add className={tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("tag", true)} />
+                <Submit className={!tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleSubmitName("tag")} />
+                <Cancel className={!tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("tag", false)} />
+              </div>
               <CheckBox
                 className="flex flex-wrap w-[250px] h-[25vh] mr-[50px] mt-[10px] p-[10px] border rounded-lg overflow-y-auto scrollbar"
-                options={allTags}
+                options={allTag}
                 defaultValue={selectTags}
                 onChange={change}
+                type="tag"
               />
             </div>
           </div>

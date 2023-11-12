@@ -49,11 +49,12 @@ export default async function Home() {
     }
   })
 
+
   return (
     <div className='min-h-screen bg-secondary text-baseColor bgimg'>
-      <div>
+      <div id="goTop">
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
-          <Rocket className='custom-svg' />
+          {/* <Rocket className='custom-svg' /> */}
         </a>
       </div>
       <div className='flex w-10/12 mx-auto pt-[100px] pb-[30px] px-[100px]'>
@@ -74,7 +75,7 @@ export default async function Home() {
 
           <div className='w-full bg-baseColor rounded-lg mt-[20px] px-[20px] py-[20px] text-center'>
             <span className='text-[22px] text-primary'>时 间 线</span>
-            <p>{ classes + "分类 × " + tags + "标签 × " + allPosts.length + "文章 × " + "xx字"}</p>
+            <p>{ classes + "分类 × " + tags + "标签 × " + allPosts.length + "文章 "}</p>
             {/* <div className="border border-dashed my-[20px]"></div> */}
             <ul className='text-start mt-[20px]'>
               {

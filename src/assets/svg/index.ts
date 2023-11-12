@@ -14,5 +14,8 @@ import Rocket from "@/assets/svg/rocket.svg"
 import Login from "@/assets/svg/login.svg"
 import System from "@/assets/svg/system.svg"
 import Close from "@/assets/svg/close.svg"
+import Add from "@/assets/svg/add.svg"
+import Cancel from "@/assets/svg/cancel.svg"
+import Submit from "@/assets/svg/submit.svg"
 
-export { Home, Git, Light, Dark, Back, Github, Mail, QQ, Wechat, DianZhan, Time, BackToAll, Rocket, Login, System, Close }
+export { Home, Git, Light, Dark, Back, Github, Mail, QQ, Wechat, DianZhan, Time, BackToAll, Rocket, Login, System, Close, Add, Cancel, Submit }
