@@ -47,7 +47,7 @@ export default async function PostPage({ params }: PostPageProps) {
     <div className="flex-grow bg-secondary text-baseColor">
       <article className="w-9/12 mx-auto flex pt-[100px] pb-[50px] px-[50px]">
         <Link
-          href="/Blog"
+          href="/Note"
           className="fixed top-[100px] flex"
         >
           <Back className="custom-svg mr-2 h-6 w-6" />
