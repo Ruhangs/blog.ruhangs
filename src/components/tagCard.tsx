@@ -9,7 +9,7 @@ interface Props {
 export default function TagCard(props: Props) {
   const { title, tags } = props
   return (
-    <div className="w-full h-[500px] mr-[30px] px-[10px] py-[10px] sticky top-[100px] rounded-lg bg-baseColor">
+    <div className="w-full lg:h-[500px] mr-[30px] px-[10px] py-[10px] sticky top-[100px] rounded-lg bg-baseColor">
       <div className="text-baseColor">
         <div className="text-[16px]">
           {title}

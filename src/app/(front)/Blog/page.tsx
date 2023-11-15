@@ -31,11 +31,11 @@ export default async function Blog() {
           {/* <Rocket className='custom-svg' /> */}
         </a>
       </div>
-      <div className="flex w-9/12 mx-auto py-[100px] px-[100px] ">
-        <div className="w-[300px] pr-[30px]">
+      <div className="w-full px-[20px] py-[100px] lg:flex lg:w-9/12 lg:mx-auto lg:px-[100px] ">
+        <div className="max-lg:hidden lg:w-[300px] lg:pr-[30px]">
           <TagCard title={"标签"} tags={allTags} />
         </div>
-        <div className="w-3/4 px-[20px] pb-[20px] rounded-lg bg-baseColor">
+        <div className="flex-1 px-[20px] py-[20px] rounded-lg bg-baseColor">
           {
             allPosts.length ? (
               <div>
