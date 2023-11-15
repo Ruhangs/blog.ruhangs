@@ -46,8 +46,8 @@ export default function Nav() {
               <Home width="150" height="50" className="fill-baseColor" />
             </Link>
           </div>
-          <div>
-            <Menu className="block fill-baseColor md:hidden" onClick={handleClick} />
+          <div onClick={handleClick}>
+            <Menu className="block fill-baseColor md:hidden"  />
             {/* <!-- 列表 --> */}
             <div className={`${menuHidden ? "max-md:hidden" : "max-md:bg-baseColor max-md:border max-md:rounded-lg max-md:w-[30vw] max-md:absolute max-md:top-[70px] max-md:right-[10px] max-md:text-center max-md:p-[10px]"} md:flex md:justify-between md:items-center md:h-[70px]`} ref={menuListRef}>
               {/* <div className='w-[200px] h-[30px] mr-[40px] border rounded-xl leading-[30px] '>
