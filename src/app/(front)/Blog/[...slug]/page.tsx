@@ -76,7 +76,6 @@ export default async function PostPage({ params }: PostPageProps) {
               width={720}
               height={405}
               className="my-8 rounded-md bg-muted transition-colors"
-              // priority {post.content?.toString()}
             />
           )}
           <Article content={post.content?.toString() || ''}></Article>

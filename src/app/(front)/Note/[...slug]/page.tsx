@@ -45,15 +45,15 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="flex-grow bg-secondary text-baseColor">
-      <article className="w-9/12 mx-auto flex pt-[100px] pb-[50px] px-[50px]">
+      <article className="pt-[100px] pb-[50px] w-full px-[20px] md:px-[40px] lg:flex lg:w-9/12 lg:mx-auto lg:px-[50px]">
         <Link
           href="/Note"
-          className="fixed top-[100px] flex"
+          className="max-lg:hidden fixed top-[100px]"
         >
           <Back className="custom-svg mr-2 h-6 w-6" />
           返回
         </Link>
-        <div className="flex-1 pl-[100px]">
+        <div className="flex-1 lg:pl-[100px]">
           <div>
             <h1 className="mt-1 inline-block font-heading text-4xl mb-3 leading-tight lg:text-5xl">
               {post.title}

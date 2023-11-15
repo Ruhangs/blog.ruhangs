@@ -35,7 +35,7 @@ export default async function Blog() {
         <div className="max-lg:hidden lg:w-[300px] lg:pr-[30px]">
           <TagCard title={"标签"} tags={allTags} />
         </div>
-        <div className="flex-1 px-[20px] py-[20px] rounded-lg bg-baseColor">
+        <div className="flex-1">
           {
             allPosts.length ? (
               <div>
@@ -44,7 +44,7 @@ export default async function Blog() {
                     key={post.id}
                   >
                     <Link href={"/Blog/" + post.id}>
-                      <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} time={post.createdAt.toISOString()}></PostCard>
+                      <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} imgSrc={post.image} time={post.createdAt.toISOString()}></PostCard>
                     </Link>
                   </div>
                 ))}

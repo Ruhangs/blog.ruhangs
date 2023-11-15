@@ -31,11 +31,11 @@ export default async function Note() {
           {/* <Rocket className='custom-svg' /> */}
         </a>
       </div>
-      <div className="flex w-9/12 mx-auto py-[100px] px-[100px] ">
-        <div className="w-[300px] pr-[30px]">
+      <div className="w-full px-[20px] py-[100px] lg:flex lg:w-9/12 lg:mx-auto lg:px-[100px] ">
+        <div className="max-lg:hidden lg:w-[300px] lg:pr-[30px]">
           <TagCard title={"分类"} tags={allClass} />
         </div>
-        <div className="w-3/4 px-[20px] pb-[20px] rounded-lg bg-baseColor">
+        <div className="flex-1">
           {
             allPosts.length ? (
               <div>
@@ -44,7 +44,7 @@ export default async function Note() {
                     key={post.id}
                   >
                     <Link href={"/Blog/" + post.id}>
-                      <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} time={post.createdAt.toISOString()}></PostCard>
+                      <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} imgSrc={post.image} time={post.createdAt.toISOString()}></PostCard>
                     </Link>
                   </div>
                 ))}
