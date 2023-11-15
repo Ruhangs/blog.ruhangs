@@ -15,8 +15,8 @@ export default function Profile(profileInfo: Props) {
   const mycardRef = useRef(null)
 
   return (
-    <div className="w-[300px] h-[600px] mr-[30px] px-[10px] py-[10px] fixed top-[100px] rounded-lg bg-baseColor text-baseColor">
-      <div className="px-[20px] py-[20px]" ref={mycardRef} id="mycard">
+    <div className="w-full px-[10px] py-[10px] mb-[20px] lg:w-[250px] lg:h-[500px] lg:mr-[30px] lg:sticky lg:top-[100px] rounded-lg bg-baseColor text-baseColor">
+      <div className="w-full px-[20px] py-[20px]" ref={mycardRef} id="mycard">
         <div className="text-center">
           <div className="mt-[10px]">
             {/* <span className="status">

@@ -54,15 +54,15 @@ export default async function Home() {
 
 
   return (
-    <div className='flex-grow  bg-secondary text-baseColor bgimg'>
+    <div className='flex-grow bg-secondary text-baseColor bgimg'>
       <div id="goTop">
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
           {/* <Rocket className='custom-svg' /> */}
         </a>
       </div>
-      <div className='flex w-10/12 mx-auto pt-[100px] pb-[30px] px-[100px]'>
+      <div className='pt-[100px] pb-[30px] lg:px-[100px] w-full mx-0 px-[20px] lg:flex lg:w-10/12 lg:mx-auto'>
         <Profile name={profile?.name || ""} email={profile?.email || ""} profile={profile?.profile || null}></Profile>
-        <div className='pl-[330px] w-full'>
+        <div className='flex-1'>
           <div className='flex w-full justify-between'>
             <div className='w-[48%] h-[150px] bg-baseColor rounded-lg px-[20px] py-[20px] text-center'>
               <span className='text-[22px] text-primary'>文 章</span>

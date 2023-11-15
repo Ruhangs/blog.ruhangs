@@ -17,5 +17,7 @@ import Close from "@/assets/svg/close.svg"
 import Add from "@/assets/svg/add.svg"
 import Cancel from "@/assets/svg/cancel.svg"
 import Submit from "@/assets/svg/submit.svg"
+import Menu from "@/assets/svg/menu.svg"
 
-export { Home, Git, Light, Dark, Back, Github, Mail, QQ, Wechat, DianZhan, Time, BackToAll, Rocket, Login, System, Close, Add, Cancel, Submit }
+export { Home, Git, Light, Dark, Back, Github, Mail, QQ, Wechat, DianZhan, Time, 
+  BackToAll, Rocket, Login, System, Close, Add, Cancel, Submit, Menu }
