@@ -49,7 +49,7 @@ export default async function PostPage({ params }: PostPageProps) {
     <div className="flex-grow bg-secondary text-baseColor">
       <article className="pt-[100px] pb-[50px] w-full px-[20px] md:px-[40px] lg:flex lg:w-9/12 lg:mx-auto lg:px-[50px]">
         <Link
-          href="/Note"
+          href="/Project"
           className="max-lg:hidden fixed top-[100px]"
         >
           <Back className="custom-svg mr-2 h-6 w-6" />
@@ -83,7 +83,6 @@ export default async function PostPage({ params }: PostPageProps) {
           <Catalogue content={post.content?.toString() || ''}></Catalogue>
         </div>
       </article>
-
     </div>
 
   )

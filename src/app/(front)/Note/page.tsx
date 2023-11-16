@@ -43,7 +43,7 @@ export default async function Note() {
                   <div
                     key={post.id}
                   >
-                    <Link href={"/Blog/" + post.id}>
+                    <Link href={"/Note/" + post.id}>
                       <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} imgSrc={post.image} time={post.createdAt.toISOString()}></PostCard>
                     </Link>
                   </div>

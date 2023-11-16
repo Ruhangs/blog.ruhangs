@@ -55,7 +55,7 @@ export default async function PostPage({ params }: PostPageProps) {
         >
           <Back className="custom-svg mr-2 h-6 w-6" />
         </Link>
-        <div className="flex-1  lg:pl-[100px] ">
+        <div className="flex-1 lg:pl-[100px] ">
           <div>
             <h1 className="mt-1 inline-block font-heading text-4xl mb-3 leading-tight lg:text-5xl">
               {post.title}
