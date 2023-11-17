@@ -69,16 +69,16 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
         placeholder: "请在此输入正文...",
         toolbar: [
           "emoji", "headings", "bold", "italic", "strike", "|", "line", "quote", "list", "ordered-list", "check", "outdent", "indent",
-          "code", "inline-code", "link", "table", "|", "insert-after", "insert-before", "undo", "redo", "upload", "preview", "fullscreen", "code-theme",
+          "code", "inline-code", "link", "table", "|", "insert-after", "insert-before", "undo", "redo", "upload", "preview", "outline", "fullscreen", "code-theme",
         ],
         toolbarConfig: {
           pin: true
         },
         outline: {
-          enable: true,
+          enable: false,
           position: "right"
         },
-        mode: "wysiwyg",
+        mode: "ir",
         minHeight: 500
       });
       setIsPublished(post.published)
@@ -275,35 +275,36 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
             </button>
           </div>
         </div>
-
-
         <div className="flex-col  rounded-xl px-[20px] w-full">
-          <div className="flex">
+          <div className="lg:flex">
             <div className="flex-col items-center justify-center">
               {/* 题目和描述 */}
-              <div className="w-[300px] mx-auto mb-[10px]">
-                <label htmlFor="title" ><p className="inline-block mb-[8px]">题目:</p></label>
-                <Input
-                  id="title"
-                  type="text"
-                  defaultValue={post.title}
-                  className="text-lg"
-                  onInput={changTitle}
-                />
+              <div className="max-lg:flex">
+                <div className="w-[300px] mx-auto mb-[10px]">
+                  <label htmlFor="title" ><p className="inline-block mb-[8px]">题目:</p></label>
+                  <Input
+                    id="title"
+                    type="text"
+                    defaultValue={post.title}
+                    className="text-lg"
+                    onInput={changTitle}
+                  />
+                </div>
+                <div className="w-[300px] mx-auto">
+                  <label htmlFor="desc"><p className="inline-block mb-[8px]">描述:</p></label>
+                  <Input
+                    id="desc"
+                    defaultValue={post.des || ""}
+                    className="text-lg"
+                    onInput={changDesc}
+                  />
+                </div>
               </div>
-              <div className="w-[300px] mx-auto">
-                <label htmlFor="desc"><p className="inline-block mb-[8px]">描述:</p></label>
-                <Input
-                  id="desc"
-                  defaultValue={post.des || ""}
-                  className="text-lg"
-                  onInput={changDesc}
-                />
-              </div>
+
               {/* 分类 */}
-              <div className="w-[300px] mx-auto mt-[10px]">
-                <div>
-                  <div className="w-[300px] flex items-center">
+              <div className="max-lg:flex lg:mt-[10px]">
+                <div className="w-[300px] mx-auto">
+                  <div className="flex items-center">
                     分类：
                     <Input type='text' onChange={handleInput} className={!classHidden ? "hidden" : 'w-[100px] h-6'} />
                     <Add className={classHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("class", true)} />
@@ -318,8 +319,8 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
                     type="class"
                   />
                 </div>
-                <div className="mt-[10px]">
-                  <div className="w-[300px] flex items-center">
+                <div className="w-[300px] mx-auto lg:mt-[10px]">
+                  <div className="flex items-center">
                     标签：
                     <Input type='text' onChange={handleInput} className={!tagHidden ? "hidden" : 'w-[100px] h-6'} />
                     <Add className={tagHidden ? "hidden" : " custom-svg ml-[8px]"} width="20" height="20" onClick={() => handleDisplay("tag", true)} />
@@ -337,14 +338,13 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
               </div>
             </div>
             {/* 编辑器 */}
-            <div className="ml-[40px] w-full">
+            <div className="lg:ml-[40px] w-full">
               正文：
               <div className="max-h-[70vh] mt-[8px] overflow-y-auto scrollbar-h">
 
                 <div id="vditor" className="vditor" />
               </div>
             </div>
-
           </div>
         </div>
       </div>
