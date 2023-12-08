@@ -18,6 +18,7 @@ import Add from "@/assets/svg/add.svg"
 import Cancel from "@/assets/svg/cancel.svg"
 import Submit from "@/assets/svg/submit.svg"
 import Menu from "@/assets/svg/menu.svg"
+import Search from "@/assets/svg/search.svg"
 
 export { Home, Git, Light, Dark, Back, Github, Mail, QQ, Wechat, DianZhan, Time, 
-  BackToAll, Rocket, Login, System, Close, Add, Cancel, Submit, Menu }
+  BackToAll, Rocket, Login, System, Close, Add, Cancel, Submit, Menu, Search }
