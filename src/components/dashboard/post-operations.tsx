@@ -22,7 +22,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/base/icons"
 
 async function deletePost(postId: string) {
 

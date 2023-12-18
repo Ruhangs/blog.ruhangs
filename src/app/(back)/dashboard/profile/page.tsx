@@ -1,10 +1,10 @@
-import { DashboardHeader } from "@/components/header"
-import { DashboardShell } from "@/components/shell"
+import { DashboardHeader } from "@/components/dashboard/header"
+import { DashboardShell } from "@/components/dashboard/shell"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
-import { UserNameForm } from "@/components/user-name-form"
+import { UserNameForm } from "@/components/form/user-name-form"
 
 export default async function Profile() {
 

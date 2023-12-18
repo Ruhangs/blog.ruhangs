@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import TagItem from './base/tag'
+import TagItem from '../base/tag'
 import { Tag } from '@prisma/client'
 
 interface Props {

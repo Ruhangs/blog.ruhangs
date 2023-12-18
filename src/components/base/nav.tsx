@@ -1,32 +1,41 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import { Home, Git, Light, Dark, Login, Menu } from '@/assets/svg'
-import DialogDemo from './search';
+import DialogDemo from '../search';
 
-export default function Nav() {
 
+const Nav = (props: any) =>  {
   const headerRef = useRef<HTMLInputElement>(null)
   const menuListRef = useRef<HTMLInputElement>(null)
   const pathName = usePathname()
-
   const [theme, setTheme] = useState<String>("system");
 
   useEffect(() => {
     switch (theme) {
       case 'dark':
+        sessionStorage.setItem("theme", "dark")
         document.documentElement.className = 'theme-dark'
         break;
       case 'system':
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? setTheme("dark")
-          : setTheme("light")
+        if(typeof window !== "undefined"){
+          const sessionTheme = sessionStorage.getItem("theme")
+          if(sessionTheme !== null){
+            setTheme(sessionTheme)
+          }else{
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+              setTheme("dark")
+            }else{
+              setTheme("light")
+            }
+          }
+        }
         break;
       case 'light':
+        sessionStorage.setItem("theme", "light")
         document.documentElement.className = 'theme-light'
         break;
-
       default:
         break;
     }
@@ -39,7 +48,7 @@ export default function Nav() {
   }
 
   return (
-    <div className={pathName === '/login' || pathName === '/register' ? "hidden" : ""}>
+    <div className={pathName === '/login' || pathName === '/register' ? "opacity-0" : ""}>
       <div className="fixed z-[10] bg-baseColor w-full h-[70px] shadow-lg" ref={headerRef}>
         <div className="w-full h-[70px] px-[20px] lg:w-11/12 lg:mx-auto flex justify-between items-center">
           <div>
@@ -84,3 +93,6 @@ export default function Nav() {
     </div>
   )
 }
+
+
+export default memo(Nav)

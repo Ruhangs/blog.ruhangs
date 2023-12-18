@@ -1,5 +1,5 @@
-import PostCard from "@/components/postCard"
-import TagCard from "@/components/tagCard"
+import PostCard from "@/components/front/postCard"
+import TagCard from "@/components/front/tagCard"
 import Link from "next/link"
 import { Rocket } from "@/assets/svg"
 import { db } from "@/lib/db"

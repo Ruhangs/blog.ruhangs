@@ -3,9 +3,9 @@ import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/base/icons"
 import { Home } from "@/assets/svg"
-import { UserAuthForm } from "@/components/user-auth-form"
+import { UserAuthForm } from "@/components/form/user-auth-form"
 
 export const metadata: Metadata = {
   title: "Login",

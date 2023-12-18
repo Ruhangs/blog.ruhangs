@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import Article from "@/components/article"
-import Catalogue from "@/components/catalogue"
+import Article from "@/components/front/article"
+import Catalogue from "@/components/front/catalogue"
 
 import { Back } from "@/assets/svg"
 import { db } from "@/lib/db"

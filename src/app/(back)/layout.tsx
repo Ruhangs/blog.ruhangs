@@ -1,5 +1,5 @@
-import Nav from "@/components/nav"
-import Footer from "@/components/footer"
+import Nav from "@/components/base/nav"
+import Footer from "@/components/base/footer"
 
 interface FrontLayoutProps {
   children: React.ReactNode
@@ -8,7 +8,6 @@ interface FrontLayoutProps {
 export default function AuthLayout({ children }: FrontLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
-      <Nav></Nav>
       {children}
       <Footer className="bg-secondary"></Footer>
     </div>

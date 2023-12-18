@@ -1,5 +1,5 @@
 import { Rocket } from "@/assets/svg"
-import ProjectCard from "@/components/projectCard"
+import ProjectCard from "@/components/front/projectCard"
 import { db } from "@/lib/db"
 import Link from "next/link"
 

@@ -3,11 +3,11 @@ import { redirect } from "next/navigation"
 import { db } from "@/lib/db"
 import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
-import { DashboardHeader } from "@/components/header"
-import { PostCreateButton } from "@/components/post-create-button"
-import { PostItem } from "@/components/post-item"
-import { DashboardShell } from "@/components/shell"
+import { EmptyPlaceholder } from "@/components/dashboard/empty-placeholder"
+import { DashboardHeader } from "@/components/dashboard/header"
+import { PostCreateButton } from "@/components/dashboard/post-create-button"
+import { PostItem } from "@/components/dashboard/post-item"
+import { DashboardShell } from "@/components/dashboard/shell"
 
 
 export default async function Blogs() {
