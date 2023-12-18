@@ -105,6 +105,24 @@ export function UserNameForm({ user, profile, className, ...props }: UserNameFor
               <p className="px-1 text-xs text-red-600">{"请输入至少一个字符"}</p>
             )}
           </div>
+          {/* TODO 头像上传 */}
+          {/* <div className="w-[45%] mb-[10px]">
+            <Label className="inline-block mb-[10px]" htmlFor="name">
+              头像：
+            </Label>
+            <Input
+              id="avatar"
+              type="file"
+              accept={accept}
+              onChange={upload}
+              className="hidden"
+              size={32}
+              {...register("avatar")}
+            />
+            {errors?.name && (
+              <p className="px-1 text-xs text-red-600">{"请输入至少一个字符"}</p>
+            )}
+          </div> */}
           <div className="w-[45%] mb-[10px]">
             <Label className="inline-block mb-[10px]" htmlFor="email">
               邮箱：

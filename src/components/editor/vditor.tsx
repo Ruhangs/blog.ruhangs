@@ -8,7 +8,7 @@ import * as z from "zod"
 import Vditor from "vditor";
 import "@/styles/vditor.css";
 
-import { cn } from "@/lib/utils"
+import { cn, uploadImage } from "@/lib/utils"
 import { postPatchSchema } from "@/lib/validations/post"
 import { buttonVariants } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
@@ -148,18 +148,20 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
 
   // 上传图片
   const upload = async (e: any) => {
-    const imgFile = e.currentTarget.files[0]
+    
+    // const imgFile = e.currentTarget.files[0]
 
-    const formData = new FormData();
-    formData.append('file', imgFile);
-    formData.append('upload_preset', 'my-uploads');
-    // TODO 配置环境变量
-    const data = await fetch("https://api.cloudinary.com/v1_1/ducx0mgen/image/upload", {
-      method: 'POST',
-      body: formData
-    }).then(r => r.json());
+    // const formData = new FormData();
+    // formData.append('file', imgFile);
+    // formData.append('upload_preset', 'my-uploads');
+    // // TODO 配置环境变量
+    // const data = await fetch("https://api.cloudinary.com/v1_1/ducx0mgen/image/upload", {
+    //   method: 'POST',
+    //   body: formData
+    // }).then(r => r.json());
+    const url = await uploadImage(e)
 
-    setImageSrc(data.secure_url);
+    setImageSrc(url);
   }
 
   const [name, setName] = useState<string>()
