@@ -4,9 +4,9 @@ import Link from "next/link"
 import { Rocket } from "@/assets/svg"
 import { db } from "@/lib/db"
 
+export const dynamic = "force-dynamic"
 
 export default async function Note() {
-
   const allPosts = await db.post.findMany({
     where: {
       type: "note",

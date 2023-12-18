@@ -17,23 +17,25 @@ const getSchema = z.object({
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
+    // const session = await getServerSession(authOptions)
 
-    if (!session) {
-      return new Response("Unauthorized", { status: 403 })
-    }
+    // if (!session) {
+    //   return new Response("Unauthorized", { status: 403 })
+    // }
 
-    const { user } = session
+    // const { user } = session
     const posts = await db.post.findMany({
       select: {
         id: true,
         title: true,
         published: true,
         createdAt: true,
-        tags: true
+        tags: true,
+        des: true,
+        type: true
       },
       where: {
-        authorId: user.id,
+        published: true,
       },
     })
 

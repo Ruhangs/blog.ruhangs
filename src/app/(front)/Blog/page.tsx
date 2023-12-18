@@ -4,6 +4,8 @@ import Link from "next/link"
 import { Rocket } from "@/assets/svg"
 import { db } from "@/lib/db"
 
+// 后面可采用Suspence用骨架屏渲染列表部分
+export const dynamic = "force-dynamic"
 
 export default async function Blog() {
 

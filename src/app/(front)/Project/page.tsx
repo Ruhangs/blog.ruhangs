@@ -3,6 +3,8 @@ import ProjectCard from "@/components/projectCard"
 import { db } from "@/lib/db"
 import Link from "next/link"
 
+export const dynamic = "force-dynamic"
+
 export default async function Project() {
 
   const allPosts = await db.post.findMany({

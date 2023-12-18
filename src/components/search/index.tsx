@@ -5,12 +5,14 @@ import { Search } from '@/assets/svg';
 import { toast } from "@/components/ui/use-toast"
 import Fuse from "fuse.js"
 import type FuseResult from "fuse.js"
+import Link from 'next/link';
 
 
 const DialogDemo = () => {
 
     const [allposts, setAllposts] = useState([])
     const [result, setResult] = useState<FuseResult<any>[]>([])
+    const [keyword, setKeyword] = useState<string[]>([])
     const fuseOptions = {
         // isCaseSensitive: false,
         // includeScore: false,
@@ -28,6 +30,7 @@ const DialogDemo = () => {
         keys: [
             "title",
             "tags.name",
+            "des"
         ]
     };
 
@@ -52,22 +55,25 @@ const DialogDemo = () => {
         })
     }
 
-    useEffect(() => {
-        getList()
-    })
-
     const fuse = new Fuse(allposts, fuseOptions);
     let res: any = []
     const handleChange = (e: any) => {
-        // console.log(e.target.value)
         res = fuse.search(e.target.value)
+        console.log(res)
         setResult(res)
+        setKeyword(e.target.value)
     }
 
     const handleOpen = () => {
+        getList()
         setResult([])
     }
 
+    const Highlight = ({ text, keyword }: any) => {
+        return text.split(new RegExp(`(${keyword})`, "gi")).map((c: any, i: any) => {
+            return c === keyword ? <span className='text-primary' key={i}>{c}</span> : c
+        })
+    }
 
     return (
         <div className='text-baseColor '>
@@ -86,27 +92,41 @@ const DialogDemo = () => {
                                 ×
                             </button>
                         </Dialog.Close>
-                        {/* <Dialog.Title className="DialogTitle">Edit profile</Dialog.Title> */}
-                        {/* <Dialog.Description className="DialogDescription">
-                        Make changes to your profile here. Click save when you
-                    </Dialog.Description> */}
                         <div>
                             <input onChange={handleChange} type="text" placeholder='请输入' className='h-[2.5rem] w-full border rounded-xl bg-baseColor text-baseColor px-[10px] focus:outline-none' />
                             {/* <button className="w-2/12 h-[2.5rem] bg-gray-500 text-baseColor rounded-e-xl">搜索</button> */}
                         </div>
-                        <Dialog.Close asChild>
-                            <div className='flex-1 w-full mt-[20px] overflow-y-auto scrollbar'>
-                                {
-                                    result ? result.map((post: any) => {
-                                        return (
-                                            <div key={post.item.id} className='h-[50px]'>
-                                                { post.item.title }
-                                            </div>
-                                        )
-                                    }) : <div>暂无结果</div>
-                                }
-                            </div>
-                        </Dialog.Close>
+
+                        <div className='flex-1 w-full mt-[20px] overflow-y-auto scrollbar'>
+                            {
+                                result ? result.map((post: any) => {
+                                    return (
+                                        <Link
+                                            key={post.item.id}
+                                            href={`/${post.item.type === "note" ? "Note" : post.item.type === "blog" ? "Blog" : "Project"}/${post.item.id}`}
+                                        >
+                                            <Dialog.Close asChild>
+                                                <div className='h-[80px] border-b-[1px] rounded-sm' >
+                                                    <div className='text-xl'><Highlight text={post.item.title} keyword={keyword}></Highlight></div>
+                                                    <div className='text-sm'><Highlight text={post.item.des} keyword={keyword}></Highlight></div>
+                                                    <div>{
+                                                        post.item.tags ? (
+                                                            post.item.tags.map((tag: any) => (
+                                                                <span key={tag.id} className='py-[1px] mr-[5px] cursor-default text-thirdary text-xs'>
+                                                                    <Highlight text={tag.name} keyword={keyword}></Highlight>
+                                                                </span>
+                                                            ))
+                                                        ) : (
+                                                            <span></span>
+                                                        )
+                                                    }</div>
+                                                </div>
+                                            </Dialog.Close>
+                                        </Link>
+                                    )
+                                }) : <div>暂无结果</div>
+                            }
+                        </div>
                     </Dialog.Content>
                 </Dialog.Portal>
             </Dialog.Root>
