@@ -5,22 +5,10 @@ import NavLinks from '@/components/ui/nav-links';
 
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
+    <div className="pb-[10px] md:flex md:h-full md:flex-col md:px-2 lg:px-3 md:py-4">
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-baseColor md:block"></div>
-        {/* <div className='h-[48px] w-full text-center leading-[30px] gap-2 text-baseColor rounded-md bg-baseColor hover:bg-sky-100 hover:text-yellow-600 p-3 text-sm font-medium  md:p-2 md:px-3' >
-          <form
-          // action={async () => {
-          //   // 'use server';
-          //   // await signOut();
-          // }}
-          >
-            <button className="">
-              <div>退出后台登录</div>
-            </button>
-          </form>
-        </div> */}
       </div>
     </div>
   );

@@ -54,8 +54,8 @@ export default function NavLinks() {
               },
             )}
           >
-            <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
+            <LinkIcon className="hidden w-6" />
+            <p className="md:block">{link.name}</p>
           </Link>
         );
       })}

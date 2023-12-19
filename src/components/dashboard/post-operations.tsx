@@ -94,6 +94,7 @@ export function PostOperations({ post }: PostOperationsProps) {
                 if (deleted) {
                   setIsDeleteLoading(false)
                   setShowDeleteAlert(false)
+                  
                   router.refresh()
                 }
               }}
