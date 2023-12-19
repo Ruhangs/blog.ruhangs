@@ -14,7 +14,7 @@ export default function Article({ content }: Props) {
   return (
     <div className={"markdown"}>
       <Markdown
-        // @ts-ignore
+        remarkPlugins={[remarkGfm]}
         components={{
           code(props) {
             const {children, className, node, ...rest} = props

@@ -11,7 +11,7 @@ interface Props {
 
 export default function Catalogue({ content }: Props) {
   return (
-    <div className="w-full h-[500px] mr-[30px] px-[10px] py-[10px] sticky top-[100px] rounded-lg bg-baseColor overflow-y-auto scrollbar">
+    <div className="w-[250px] h-[500px] mr-[30px] px-[10px] py-[10px] fixed top-[100px]  rounded-lg bg-baseColor overflow-y-auto scrollbar">
       <div className="text-baseColor">
         <div className="text-[16px] mb-[10px]">
           目录

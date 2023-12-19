@@ -47,14 +47,14 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="flex-grow bg-secondary text-baseColor">
-      <article className="pt-[100px] pb-[50px] w-full px-[20px] md:px-[40px] lg:flex lg:w-9/12 lg:mx-auto lg:px-[50px]">
+      <article className="pt-[100px] pb-[50px] w-full px-[20px] md:px-[40px] lg:w-3/4 lg:mx-auto lg:px-0">
         <Link
           href="/Project"
           className="max-lg:hidden fixed top-[100px]"
         >
           <Back className="custom-svg mr-2 h-6 w-6" />
         </Link>
-        <div className="flex-1 lg:pl-[100px]">
+        <div className="w-full lg:pl-[100px] lg:pr-[20%]">
           <div>
             <h1 className="mt-1 inline-block font-heading text-4xl mb-3 leading-tight lg:text-5xl">
               {post.title}
@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
           )}
           <Article content={post.content?.toString() || ''}></Article>
         </div>
-        <div className="max-lg:hidden w-[250px] ml-[30px] mr-[-30px]">
+        <div className="max-lg:hidden fixed top-[100px] right-1/4">
           <Catalogue content={post.content?.toString() || ''}></Catalogue>
         </div>
       </article>
