@@ -51,7 +51,6 @@
 
   .bgimg {
     background-image: radial-gradient(farthest-side at -30% 0%,#f4e224, transparent);
-    /* background-image: radial-gradient(closest-corner at 20%, #faec51, transparent); */
     background-attachment: fixed;
   }
 
@@ -59,9 +58,27 @@
     display: none;
   }
 
+  .scrollbars::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .scrollbars::-webkit-scrollbar-track {
+    border-radius: 100vh;
+  }
+
+  .scrollbars::-webkit-scrollbar-thumb {
+    background: #a0a0a0;
+    border-radius: 100vh;
+  }
+
+  .scrollbars::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+  }
+
   .scrollbar::-webkit-scrollbar {
     width: 5px;
-    /* height: 10px; */
+    height: 5px;
   }
 
   .scrollbar::-webkit-scrollbar-track {
@@ -75,7 +92,7 @@
   }
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #000;
+    background: #a0a0a0;
   }
 
   .css-dev-only-do-not-override-2i2tap.ant-checkbox-wrapper {

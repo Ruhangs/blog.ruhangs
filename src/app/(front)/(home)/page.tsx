@@ -87,7 +87,7 @@ export default async function Home() {
                 allPosts ? (await allPosts).map((post) => {
                   return (
                     <li key={post.id} className='h-[30px] border-b-[1px] border-dashed border-dark hover:border-light'>
-                      <span className='text-[#747474] mr-[5px]'>{post.createdAt.toLocaleDateString()}</span>
+                      <span className='inline-block text-[#747474] w-[95px]'>{post.createdAt.toLocaleDateString()}</span>
                       <Link href={post.type === "blog" ? `/Blog/${post.id}` : `/Note/${post.id}`}>{post.title}</Link>
                     </li>
                   )  
