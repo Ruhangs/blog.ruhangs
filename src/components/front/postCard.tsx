@@ -30,7 +30,7 @@ export default function PostCard(props: Props) {
           />
         )}
         <div className='px-[10px] py-[10px]'>
-          <div className="text-[22px] font-semibold text-primary">{title}</div>
+          <div className="text-[22px] font-semibold text-primary truncate">{title}</div>
           <div className='mt-[2px] truncate text-baseColor'>{abstract}</div>
           <div className="flex justify-between items-center mt-[10px] truncate text-secondary">
             <div className='text-[14px]'>
@@ -45,7 +45,7 @@ export default function PostCard(props: Props) {
               }
             </div>
             <div>
-              <div className="flex gap-x-6">
+              <div className="flex gap-x-2">
                 <div className='flex items-center gap-x-1'>
                   <Time width='20' height='20' className='custom-svg' />
                   <p className="text-[16px] text-baseColor">{formatDate(time)}</p>

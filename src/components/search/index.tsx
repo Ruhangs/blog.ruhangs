@@ -76,16 +76,17 @@ const DialogDemo = () => {
     }
 
     return (
-        <div className='text-baseColor '>
+        <div className='text-baseColor'>
             <Dialog.Root onOpenChange={handleOpen}>
                 <Dialog.Trigger asChild>
-                    <button className='flex justify-center items-center h-[20px] w-[20px] max-md:mr-0 mr-[30px] border rounded-md leading-[30px] '>
-                        <Search width="15" height="15" className={"custom-svg"} ></Search>
+                    <button className='h-[32px] w-[32px] flex justify-center items-center md:h-[20px] md:w-[20px] max-md:mr-2 mr-[30px] md:border md:rounded-md md:leading-[30px] '>
+                        <Search width="15" height="15" className={"custom-svg max-md:hidden"} ></Search>
+                        <Search width="26" height="26" className="block fill-baseColor md:hidden"></Search>
                     </button>
                 </Dialog.Trigger>
                 <Dialog.Portal>
                     <Dialog.Overlay className="w-screen h-screen bg-slate-400 bg-opacity-20 fixed inset-0" />
-                    <Dialog.Content className="bg-baseColor flex flex-col w-1/2 h-1/2 text-baseColor absolute p-10 bg-gary-700 rounded-xl top-1/4 left-1/2 
+                    <Dialog.Content className="bg-baseColor flex flex-col w-[90vw]  md:w-3/4 lg:w-1/2 h-1/2 text-baseColor absolute p-10 bg-gary-700 rounded-xl top-1/4 left-1/2 
                 -translate-y-1/4 -translate-x-1/2 shadow-2xl">
                         <Dialog.Close asChild>
                             <button className="h-[25px] w-[25px] inline-flex justify-center items-center absolute top-2 right-2" aria-label="Close">
@@ -106,9 +107,9 @@ const DialogDemo = () => {
                                             href={`/${post.item.type === "note" ? "Note" : post.item.type === "blog" ? "Blog" : "Project"}/${post.item.id}`}
                                         >
                                             <Dialog.Close asChild>
-                                                <div className='h-[80px] border-b-[1px] rounded-sm' >
-                                                    <div className='text-xl'><Highlight text={post.item.title} keyword={keyword}></Highlight></div>
-                                                    <div className='text-sm'><Highlight text={post.item.des} keyword={keyword}></Highlight></div>
+                                                <div className='h-[80px] mb-[1vh] border-b-[1px] rounded-sm' >
+                                                    <div className='text-xl truncate'><Highlight text={post.item.title} keyword={keyword}></Highlight></div>
+                                                    <div className='text-sm truncate'><Highlight text={post.item.des} keyword={keyword}></Highlight></div>
                                                     <div>{
                                                         post.item.tags ? (
                                                             post.item.tags.map((tag: any) => (
