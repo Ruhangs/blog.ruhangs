@@ -3,22 +3,23 @@ import React from 'react'
 import Image from 'next/image'
 import { Time, DianZhan } from '@/assets/svg'
 import { formatDate } from "@/lib/utils"
-import { Tag } from '@prisma/client'
+import { Class, Tag } from '@prisma/client'
 
 interface Props {
   title: string,
   abstract: string | undefined,
   tags: Tag[],
+  classes: Class[],
   time: string,
   imgSrc: string | null
 }
 
 export default function PostCard(props: Props) {
-  const { title, abstract, tags, time, imgSrc } = props
+  const { title, abstract, tags, time, imgSrc, classes } = props
 
   return (
     <div className='rounded-lg bg-baseColor mb-[10px]'>
-      <div className="min-w-0 my-[10px]" >
+      <div className="min-w-0 mb-[10px]" >
         {imgSrc && (
           <Image
             src={imgSrc}
@@ -35,8 +36,17 @@ export default function PostCard(props: Props) {
           <div className="flex justify-between items-center mt-[10px] truncate text-secondary">
             <div className='text-[14px]'>
               {
+                classes ? (
+                  classes.map((item: Class) => (
+                    <span key={item.id} className='py-[1px] mr-[5px] cursor-default text-thirdary'>{item.name}</span>
+                  ))
+                ) : (
+                  <span></span>
+                )
+              }
+              {
                 tags ? (
-                  tags.map((tag) => (
+                  tags.map((tag: Tag) => (
                     <span key={tag.id} className='py-[1px] mr-[5px] cursor-default text-thirdary'>{tag.name}</span>
                   ))
                 ) : (
