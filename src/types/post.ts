@@ -9,5 +9,6 @@ export interface Post {
   tags: Tag[],
   des: string | null,
   createdAt: Date,
-  image: string | null
+  image: string | null,
+  count: number | null
 }

@@ -47,7 +47,8 @@ export default async function Blog({
               tags: true,
               des: true,
               createdAt: true,
-              image: true
+              image: true,
+              count: true
             }
           }
         }
@@ -70,7 +71,8 @@ export default async function Blog({
               tags: true,
               des: true,
               createdAt: true,
-              image: true
+              image: true,
+              count: true
             }
           }
         }
@@ -78,7 +80,7 @@ export default async function Blog({
       fiterPost(tagRes)
       break;
     default:
-      allPosts= await db.post.findMany({
+      allPosts = await db.post.findMany({
         where: {
           type: "blog",
           published: true
@@ -125,7 +127,15 @@ export default async function Blog({
                     key={post.id}
                   >
                     <Link href={"/Blog/" + post.id}>
-                      <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} classes={post.class} imgSrc={post.image} time={post.createdAt.toISOString()}></PostCard>
+                      <PostCard
+                        title={post.title}
+                        abstract={post.des || "暂无介绍"}
+                        tags={post.tags}
+                        classes={post.class}
+                        imgSrc={post.image}
+                        time={post.createdAt.toISOString()}
+                        count={post.count}
+                      />
                     </Link>
                   </div>
                 ))}

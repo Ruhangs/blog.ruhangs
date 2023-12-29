@@ -38,6 +38,7 @@
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.290.0",
     "markdown-navbar": "^1.4.3",
+    "marked": "^11.1.0",
     "next": "13.5.6",
     "next-auth": "^4.24.4",
     "nodemailer": "^6.9.7",

@@ -11,11 +11,12 @@ interface Props {
   tags: Tag[],
   classes: Class[],
   time: string,
-  imgSrc: string | null
+  imgSrc: string | null,
+  count: number | null
 }
 
 export default function PostCard(props: Props) {
-  const { title, abstract, tags, time, imgSrc, classes } = props
+  const { title, abstract, tags, time, imgSrc, classes, count } = props
 
   return (
     <div className='rounded-lg bg-baseColor mb-[10px]'>
@@ -56,13 +57,14 @@ export default function PostCard(props: Props) {
             </div>
             <div>
               <div className="flex gap-x-2">
+                
+                <div className='flex items-center text-bottom gap-x-1'>
+                  {/* <DianZhan width='22' height='22' className='custom-svg' /> */}
+                  <p className="text-[16px] text-baseColor">{count}字</p>
+                </div>
                 <div className='flex items-center gap-x-1'>
                   <Time width='20' height='20' className='custom-svg' />
-                  <p className="text-[16px] text-baseColor">{formatDate(time)}</p>
-                </div>
-                <div className='flex items-center text-bottom gap-x-1'>
-                  <DianZhan width='22' height='22' className='custom-svg' />
-                  <p className="text-[16px] text-baseColor">129</p>
+                  <p className="text-[16px] text-baseColor">{time.split("T")[0]}</p>
                 </div>
               </div>
             </div>

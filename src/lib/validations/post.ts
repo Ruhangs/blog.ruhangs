@@ -6,6 +6,7 @@ export const postPatchSchema = z.object({
   content: z.any().optional(),
   published: z.boolean().optional(),
   image: z.string().optional(),
+  count: z.number().optional(),
   tags: z.any().optional(),
   class: z.any().optional()
 })

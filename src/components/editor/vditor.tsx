@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Class, Post, Tag } from "@prisma/client"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { marked } from 'marked';
 import Vditor from "vditor";
 import "@/styles/vditor.css";
 
@@ -91,6 +92,15 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
 
     const blocks = await vd?.getValue()
 
+    const count = blocks && marked(blocks).toString().replace(/<\/?[^>]+(>|$)/g, '').replace(/\s+/g, "").length
+
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true, // 允许Git Hub标准的markdown.
+      pedantic: false, // 不纠正原始模型任何的不良行为和错误（默认为false）
+      breaks: false, // 允许回车换行（该选项要求 gfm 为true）
+    })
+
     const response = await fetch(`/api/posts/${post.id}`, {
       method: "PATCH",
       headers: {
@@ -103,7 +113,8 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
         published: isPublished,
         image: imageSrc,
         tags: selectTags,
-        class: selectClasses
+        class: selectClasses,
+        count: count
       }),
     })
     setIsSaving(false)
@@ -148,19 +159,7 @@ export function Editor({ post, selectTag, selectClass, allTag, allClass }: Edito
 
   // 上传图片
   const upload = async (e: any) => {
-    
-    // const imgFile = e.currentTarget.files[0]
-
-    // const formData = new FormData();
-    // formData.append('file', imgFile);
-    // formData.append('upload_preset', 'my-uploads');
-    // // TODO 配置环境变量
-    // const data = await fetch("https://api.cloudinary.com/v1_1/ducx0mgen/image/upload", {
-    //   method: 'POST',
-    //   body: formData
-    // }).then(r => r.json());
     const url = await uploadImage(e)
-
     setImageSrc(url);
   }
 

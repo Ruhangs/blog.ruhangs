@@ -43,7 +43,8 @@ export default async function Note({
               tags: true,
               des: true,
               createdAt: true,
-              image: true
+              image: true,
+              count: true
             }
           }
         }
@@ -66,7 +67,8 @@ export default async function Note({
               tags: true,
               des: true,
               createdAt: true,
-              image: true
+              image: true,
+              count: true
             }
           }
         }
@@ -121,7 +123,15 @@ export default async function Note({
                     key={post.id}
                   >
                     <Link href={"/Note/" + post.id}>
-                      <PostCard title={post.title} abstract={post.des || "暂无介绍"} tags={post.tags} classes={post.class} imgSrc={post.image} time={post.createdAt.toISOString()}></PostCard>
+                      <PostCard
+                        title={post.title}
+                        abstract={post.des || "暂无介绍"}
+                        tags={post.tags}
+                        classes={post.class}
+                        imgSrc={post.image}
+                        time={post.createdAt.toISOString()}
+                        count={post.count}
+                      />
                     </Link>
                   </div>
                 ))}

@@ -68,6 +68,7 @@ export async function PATCH(
         content: body.content,
         published: body.published,
         image: body.image,
+        count: body.count,
         tags: {set: body.tags},
         class: {set: body.class}
       },
