@@ -1,15 +1,6 @@
 import SideNav from '@/components/dashboard/sidenav';
-import { authOptions } from "@/lib/auth"
-import { redirect } from 'next/navigation';
-import { getCurrentUser } from "@/lib/session"
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
-
-  const user = await getCurrentUser()
-
-  if (!user) {
-    redirect(authOptions?.pages?.signIn || "/login")
-  }
 
   return (
     <div className="max-md:p-[20px] h-screen bg-secondary text-baseColor">

@@ -1,6 +1,6 @@
 "use client"
 import * as React from "react"
-import { useSearchParams } from "next/navigation"
+import { redirect, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from 'next-auth/react';
 import { useForm } from "react-hook-form"
@@ -53,6 +53,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           description: "Your sign in request failed. Please try again.",
           variant: "destructive",
         })
+      }else{
+        redirect("/dashboard")
       }
 
       return toast({

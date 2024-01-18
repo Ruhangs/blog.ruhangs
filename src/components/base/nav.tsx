@@ -2,6 +2,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { Home, Git, Light, Dark, Login, Menu } from '@/assets/svg'
 import DialogDemo from '../search';
 
@@ -11,6 +12,8 @@ const Nav = (props: any) => {
   const menuListRef = useRef<HTMLInputElement>(null)
   const pathName = usePathname()
   const [theme, setTheme] = useState<String>("system");
+
+  const { data: session } = useSession()
 
   useEffect(() => {
     switch (theme) {
@@ -91,7 +94,11 @@ const Nav = (props: any) => {
                 </div>
 
                 <div className='max-md:hidden md:ml-[30px]'>
-                  <Link href={"/dashboard"}><Login className="custom-svg" width="20" height="20" /></Link>
+                  {
+                    session ? <Link href={"/dashboard"}><Login className="custom-svg" width="20" height="20" /></Link> :
+                      <Link href={"/login"}><Login className="custom-svg" width="20" height="20" /></Link>
+                  }
+
                 </div>
               </div>
             </div>

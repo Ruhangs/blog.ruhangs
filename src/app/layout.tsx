@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { AppProps } from 'next/app';
 import '../styles/globals.css'
 import Nav from "@/components/base/nav"
+import { NextAuthProvider } from '@/app/seesionProvider';
+
 
 // import { Providers } from '@/redux/providers'
 
@@ -13,14 +16,18 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  children
+  children,
+  pageProps
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  pageProps: AppProps["pageProps"]
 }) {
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <Nav></Nav>
+        <NextAuthProvider>
+          <Nav></Nav>
+        </NextAuthProvider>
         {children}
       </body>
     </html>
