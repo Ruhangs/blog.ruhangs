@@ -6,6 +6,7 @@ import { toast } from "@/components/ui/use-toast"
 import Fuse from "fuse.js"
 import type FuseResult from "fuse.js"
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 
 const DialogDemo = () => {
@@ -13,6 +14,7 @@ const DialogDemo = () => {
     const [allposts, setAllposts] = useState([])
     const [result, setResult] = useState<FuseResult<any>[]>([])
     const [keyword, setKeyword] = useState<string[]>([])
+    const pathName = usePathname()
     const fuseOptions = {
         // isCaseSensitive: false,
         // includeScore: false,
@@ -79,7 +81,8 @@ const DialogDemo = () => {
         <div className='text-baseColor'>
             <Dialog.Root onOpenChange={handleOpen}>
                 <Dialog.Trigger asChild>
-                    <button className='h-[32px] w-[32px] flex justify-center items-center md:h-[20px] md:w-[20px] max-md:mr-2 mr-[30px] md:border md:rounded-md md:leading-[30px] '>
+                    <button 
+                    className={pathName === '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName) ? "hidden" : 'h-[32px] w-[32px] flex justify-center items-center md:h-[20px] md:w-[20px] max-md:mr-2 mr-[30px] md:border md:rounded-md md:leading-[30px]'}>
                         <Search width="15" height="15" className={"custom-svg max-md:hidden"} ></Search>
                         <Search width="26" height="26" className="block fill-baseColor md:hidden"></Search>
                     </button>

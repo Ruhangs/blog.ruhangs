@@ -2,9 +2,17 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { Home, Git, Light, Dark, Login, Menu } from '@/assets/svg'
 import DialogDemo from '../search';
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 
 const Nav = (props: any) => {
@@ -94,11 +102,41 @@ const Nav = (props: any) => {
                 </div>
 
                 <div className='max-md:hidden md:ml-[30px]'>
-                  {
-                    session ? <Link href={"/dashboard"}><Login className="custom-svg" width="20" height="20" /></Link> :
-                      <Link href={"/login"}><Login className="custom-svg" width="20" height="20" /></Link>
-                  }
-
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="flex">
+                      <Login className="custom-svg" width="20" height="20" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-baseColor">
+                      {
+                        session === null ? <Link href={"/login"}>
+                          <DropdownMenuItem
+                            className="flex cursor-pointer items-center text-destructive text-baseColor hover:bg-primary focus:text-destructive"
+                          >
+                            登 录
+                          </DropdownMenuItem>
+                        </Link> :
+                          <>
+                            <DropdownMenuItem className="hover:bg-primary">
+                              <Link href={`/dashboard`}  className={pathName === '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName) ? "hidden" : "flex w-full text-baseColor"}>
+                                进 入 后 台
+                              </Link>
+                              <Link href={`/`} className={pathName !== '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName) ? "hidden" : "flex w-full text-baseColor"}>
+                                返 回 博 客
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <Link href={"/"}>
+                              <DropdownMenuItem
+                                className="flex cursor-pointer items-center text-destructive hover:bg-primary text-red-600 focus:text-destructive"
+                                onSelect={() => signOut()}
+                              >
+                                退 出 登 录
+                              </DropdownMenuItem>
+                            </Link>
+                          </>
+                      }
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </div>
             </div>
