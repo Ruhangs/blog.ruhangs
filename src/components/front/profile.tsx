@@ -3,6 +3,8 @@ import { db } from '@/lib/db'
 import Image from 'next/image'
 import { Profile } from '@prisma/client'
 
+
+
 export default async function Profile() {
 
   const profileInfo = await db.user.findFirst({

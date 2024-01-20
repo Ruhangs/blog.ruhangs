@@ -6,7 +6,7 @@ import { Suspense } from 'react'
 import CardSkeleton from '@/components/skeleton/cardSkeleton'
 import ArticleListSkeleton from '@/components/skeleton/articleListSkeleton'
 
-export default function Home() {
+export default async function Home() {
 
   return (
     <div className='flex-grow bg-secondary text-baseColor bgimg'>
