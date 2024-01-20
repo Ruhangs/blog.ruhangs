@@ -21,13 +21,16 @@ export default async function Home() {
         <div className='flex-1'>
           <div className='flex w-full justify-between'>
             <Suspense fallback={<CardSkeleton />}>
+              {/* @ts-expect-error Server Component */}
               <Card title={"博 客"} />
             </Suspense>
             <Suspense fallback={<CardSkeleton />}>
+              {/* @ts-expect-error Server Component */}
               <Card title={"笔 记"} />
             </Suspense>
           </div>
           <Suspense fallback={<ArticleListSkeleton />}>
+            {/* @ts-expect-error Server Component */}
             <ArticleList />
           </Suspense>
         </div>
