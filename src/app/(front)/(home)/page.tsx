@@ -16,6 +16,7 @@ export default async function Home() {
         </a>
       </div>
       <div className='pt-[100px] pb-[30px] lg:px-[100px] w-full mx-0 px-[20px] lg:flex lg:w-10/12 lg:mx-auto'>
+        {/* @ts-expect-error Server Component */}
         <Profile />
         <div className='flex-1'>
           <div className='flex w-full justify-between'>
