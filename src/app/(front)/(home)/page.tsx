@@ -22,10 +22,9 @@ export default function Home() {
             <Suspense fallback={<CardSkeleton />}>
               <Card title={"博 客"} />
             </Suspense>
-            {/* <Suspense fallback={<CardSkeleton />}>
+            <Suspense fallback={<CardSkeleton />}>
               <Card title={"笔 记"} />
-            </Suspense> */}
-            <CardSkeleton />
+            </Suspense>
           </div>
           <Suspense fallback={<ArticleListSkeleton />}>
             <ArticleList />
