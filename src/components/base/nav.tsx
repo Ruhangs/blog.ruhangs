@@ -58,6 +58,8 @@ const Nav = (props: any) => {
     setmenuHidden(!menuHidden)
   }
 
+  const flag = new RegExp("\/(dashboard|editor).*").test(pathName)
+
   return (
     <div className={pathName === '/login' || pathName === '/register' ? "opacity-0" : ""}>
       <div className="fixed z-[10] bg-baseColor w-full h-[70px] shadow-lg" ref={headerRef}>
@@ -76,11 +78,11 @@ const Nav = (props: any) => {
               {/* <!-- 列表 --> */}
               <div className={`${menuHidden ? "max-md:hidden" : "max-md:bg-baseColor max-md:border max-md:rounded-lg max-md:w-[30vw] max-md:absolute max-md:top-[70px] max-md:right-[10px] max-md:text-center max-md:p-[10px]"} md:flex md:justify-between md:items-center md:h-[70px]`} ref={menuListRef}>
                 {/* <!-- 栏目 --> */}
-                <ul className={pathName === '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName) ? "hidden" : "md:flex md:justify-between md:items-center text-[18px] font-normal text-baseColor md:w-[300px] md:mr-[40px]"} id='nav' >
+                <ul className={flag ? "hidden" : "md:flex md:justify-between md:items-center text-[18px] font-normal text-baseColor md:w-[300px] md:mr-[40px]"} id='nav' >
                   <li className={`${pathName === '/' ? "active" : "hover:text-primary"} max-md:h-[6vh]`}><Link href={"/"}>首 页</Link></li>
-                  <li className={`${pathName === '/Blog' || new RegExp("\/Blog\/.+").test(pathName) ? "active" : "hover:text-primary"} max-md:h-[6vh]`}><Link href={"/Blog"}>博 客</Link></li>
-                  <li className={`${pathName === '/Note' || new RegExp("\/Note\/.+").test(pathName) ? "active" : "hover:text-primary"} max-md:h-[6vh]`}><Link href={"/Note"}>笔 记</Link></li>
-                  <li className={`${pathName === '/Project' || new RegExp("\/Project\/.+").test(pathName) ? "active" : "hover:text-primary"} max-md:h-[6vh]`}><Link href={"/Project"}>项 目</Link></li>
+                  <li className={`${new RegExp("\/Blog.*").test(pathName) ? "active" : "hover:text-primary"} max-md:h-[6vh]`}><Link href={"/Blog"}>博 客</Link></li>
+                  <li className={`${new RegExp("\/Note.*").test(pathName) ? "active" : "hover:text-primary"} max-md:h-[6vh]`}><Link href={"/Note"}>笔 记</Link></li>
+                  <li className={`${new RegExp("\/Project.*").test(pathName) ? "active" : "hover:text-primary"} max-md:h-[6vh]`}><Link href={"/Project"}>项 目</Link></li>
                 </ul>
                 {/* <!-- 开关灯 --> */}
 
@@ -117,10 +119,10 @@ const Nav = (props: any) => {
                         </Link> :
                           <>
                             <DropdownMenuItem className="hover:bg-primary">
-                              <Link href={`/dashboard`}  className={pathName === '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName) ? "hidden" : "flex w-full text-baseColor"}>
+                              <Link href={`/dashboard`}  className={flag ? "hidden" : "flex w-full text-baseColor"}>
                                 进 入 后 台
                               </Link>
-                              <Link href={`/`} className={pathName !== '/dashboard' || new RegExp("\/(dashboard|editor)\/.+").test(pathName) ? "hidden" : "flex w-full text-baseColor"}>
+                              <Link href={`/`} className={!flag ? "hidden" : "flex w-full text-baseColor"}>
                                 返 回 博 客
                               </Link>
                             </DropdownMenuItem>

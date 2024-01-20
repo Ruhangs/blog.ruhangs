@@ -22,7 +22,7 @@ export default async function Project() {
     <div className="flex-grow bg-secondary bgimg">
       <div  >
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
-          {/* <Rocket className='custom-svg' /> */}
+          <Rocket className='custom-svg' />
         </a>
       </div>
       <div className="w-full px-[20px] lg:w-9/12 mx-auto pt-[100px] pb-[30px] lg:px-[100px] ">

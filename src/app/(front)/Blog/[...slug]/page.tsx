@@ -45,7 +45,6 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
-
   return (
     <div className="flex-grow bg-secondary text-baseColor">
       <article className="pt-[100px] pb-[50px] w-full px-[20px] md:px-[40px] lg:w-3/4 lg:mx-auto lg:px-0">

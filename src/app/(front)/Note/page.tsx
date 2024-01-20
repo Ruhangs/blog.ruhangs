@@ -107,7 +107,7 @@ export default async function Note({
     <div className="flex-grow bg-secondary bgimg">
       <div>
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
-          {/* <Rocket className='custom-svg' /> */}
+          <Rocket className='custom-svg' />
         </a>
       </div>
       <div className="w-full px-[20px] py-[100px] lg:flex lg:w-9/12 lg:mx-auto lg:px-[100px] ">

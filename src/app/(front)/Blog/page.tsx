@@ -8,8 +8,6 @@ import { Post } from "@/types/post"
 // 后面可采用Suspence用骨架屏渲染列表部分
 export const dynamic = "force-dynamic"
 
-
-
 export default async function Blog({
   searchParams,
 }: {
@@ -111,7 +109,7 @@ export default async function Blog({
     <div className="flex-grow bg-secondary bgimg">
       <div>
         <a className="fixed bottom-[100px] right-[80px] text-baseColor" href="#">
-          {/* <Rocket className='custom-svg' /> */}
+          <Rocket className='custom-svg' />
         </a>
       </div>
       <div className="w-full px-[20px] py-[100px] lg:flex lg:w-9/12 lg:mx-auto lg:px-[100px] ">
